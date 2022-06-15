@@ -1,4 +1,5 @@
 export interface IndexSectionProps {
   title: string;
-  children: JSX.Element;
+  isFullWidth?: boolean;
+  children: JSX.Element[] | JSX.Element;
 }
