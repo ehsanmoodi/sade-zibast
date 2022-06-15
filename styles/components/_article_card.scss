@@ -1,0 +1,24 @@
+.article-card {
+  @apply w-full;
+
+  &__image {
+    @apply rounded;
+    @apply h-48;
+
+    img {
+      @apply rounded;
+      @apply w-full h-full;
+      @apply bg-cover object-cover bg-center object-center;
+    }
+  }
+
+  &__link {
+    @apply flex;
+    @apply font-bold text-xl leading-6;
+    @apply mt-2;
+  }
+
+  &__date {
+    @apply font-normal text-sm text-opacity-60 leading-4;
+  }
+}
