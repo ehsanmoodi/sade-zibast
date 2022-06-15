@@ -1,0 +1,14 @@
+.indexSection {
+  @apply flex flex-col gap-10 lg:gap-16;
+  @apply px-4 lg:px-0;
+  @apply mt-20 lg:mt-32;
+
+  &__title {
+    @apply self-center;
+    @apply font-normal text-4xl lg:text-5xl;
+  }
+
+  &__body {
+    @apply flex flex-col gap-10 lg:gap-16;
+  }
+}

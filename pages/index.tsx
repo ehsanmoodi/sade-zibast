@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 
-import { MainHeader, MainFooter, IndexHero } from "../components";
+import { MainHeader, MainFooter, IndexHero, IndexSection } from "../components";
 
 const Home: NextPage = () => {
   return (
@@ -16,7 +16,11 @@ const Home: NextPage = () => {
 
       <MainHeader />
 
-      <main>{/* <IndexHero /> */}</main>
+      <main>
+        <IndexSection title="آخرین خواندنی‌ها">
+          <div>Testing This Component</div>
+        </IndexSection>
+      </main>
 
       <MainFooter />
     </>
