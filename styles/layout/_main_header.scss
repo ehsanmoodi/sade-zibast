@@ -1,0 +1,43 @@
+.header {
+  @apply bg-white;
+  @apply py-4;
+  box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.04);
+
+  @apply font-normal text-lg;
+
+  &__logo {
+    @apply max-h-8;
+
+    svg {
+      @apply h-full;
+    }
+  }
+
+  &__links {
+    @screen lg {
+      @apply flex items-center gap-12;
+    }
+
+    li {
+      a {
+        @apply relative;
+
+        &.active {
+          &::after {
+            content: "";
+            @apply absolute left-0 right-0 -bottom-2 mx-auto;
+            @apply inline-block;
+            @apply w-1 h-1;
+            @apply rounded-full;
+            @apply bg-black opacity-60;
+          }
+        }
+      }
+    }
+  }
+
+  &__action {
+    @apply flex;
+    @apply gap-1;
+  }
+}

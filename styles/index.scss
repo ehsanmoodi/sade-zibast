@@ -1,1 +1,16 @@
-@import "./globals.scss";
+// vendors
+@import "./vendors/tailwind";
+
+// abstracts
+
+// base
+@import "./base/typography";
+
+// components
+// @import "./components/button.scss";
+
+// layout
+@import "./layout/main_header";
+@import "./layout/main_footer";
+
+// pages

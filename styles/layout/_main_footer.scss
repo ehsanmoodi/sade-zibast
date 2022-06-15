@@ -1,0 +1,27 @@
+.footer {
+  @apply font-normal text-lg text-opacity-70 text-center;
+  @apply mt-14 lg:mt-20;
+
+  $parent: &;
+
+  &:hover {
+    #{$parent} {
+      &__text {
+        svg {
+          @apply animate-bounce;
+        }
+      }
+    }
+  }
+
+  &__text {
+    @apply flex justify-center items-center gap-1;
+  }
+
+  &__copy-right {
+    @apply bg-wild-sand;
+    @apply text-opacity-60;
+    @apply p-4;
+    @apply mt-6;
+  }
+}
