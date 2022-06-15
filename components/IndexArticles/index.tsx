@@ -1,5 +1,6 @@
 import ArticleCard from "../ArticleCard";
 import { ArticleCardProps } from "../ArticleCard/types";
+import ButtonLink from "../ButtonLink";
 import IndexSection from "../IndexSection";
 
 const articles: ArticleCardProps[] = [
@@ -44,6 +45,9 @@ const IndexArticles = () => {
             date={article.date}
           />
         ))}
+      </div>
+      <div className="index-articles__action">
+        <ButtonLink text="مشاهده همه مطالب" href="/blog" mode="light" />
       </div>
     </IndexSection>
   );

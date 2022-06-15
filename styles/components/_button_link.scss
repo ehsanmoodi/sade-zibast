@@ -1,0 +1,39 @@
+.button-link {
+  @apply flex items-center gap-2;
+  @apply font-bold text-lg leading-5;
+  @apply rounded-sm;
+  @apply px-5 py-3;
+
+  $parent: &;
+
+  &--primary {
+    @apply bg-sea-green;
+    @apply text-white;
+  }
+
+  &--light {
+    @apply text-opacity-80;
+    @apply border border-black border-opacity-20;
+
+    #{$parent} {
+      &__icon {
+        path {
+          @apply fill-black;
+          @apply opacity-80;
+        }
+      }
+    }
+  }
+
+  &__icon {
+  }
+
+  &:hover {
+    #{$parent} {
+      &__icon {
+        @apply animate-bounce-horizontal;
+        // @apply lef
+      }
+    }
+  }
+}

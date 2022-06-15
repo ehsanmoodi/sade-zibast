@@ -1,4 +1,5 @@
 export { default as Button } from "./Button";
+export { default as ButtonLink } from "./ButtonLink";
 
 export { default as MainHeader } from "./MainHeader";
 export { default as MainFooter } from "./MainFooter";
