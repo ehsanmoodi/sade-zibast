@@ -1,0 +1,8 @@
+.index-categories {
+  // @apply flex flex-col gap-y-8;
+  // @apply lg:flex-row lg:justify-center lg:gap-x-16;
+
+  &__action {
+    @apply self-center;
+  }
+}
