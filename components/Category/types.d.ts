@@ -1,10 +1,9 @@
-export interface ArticleCardProps {
+export interface CategoryProps {
   image: {
     src: string;
     alt?: string;
   };
-  title: string;
-  date: string;
   href: string;
+  label: string;
   id?: string | number;
 }

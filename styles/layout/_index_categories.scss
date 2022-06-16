@@ -1,6 +1,17 @@
 .index-categories {
-  // @apply flex flex-col gap-y-8;
-  // @apply lg:flex-row lg:justify-center lg:gap-x-16;
+  @apply flex justify-around flex-wrap gap-y-9;
+  @apply lg:justify-center lg:gap-x-28;
+  @apply transition-all;
+
+  a {
+    &:first-child {
+      @apply w-full lg:w-auto;
+    }
+
+    &:not(:first-child) {
+      @apply w-1/2 lg:w-auto;
+    }
+  }
 
   &__action {
     @apply self-center;

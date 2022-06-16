@@ -5,6 +5,7 @@ import IndexSection from "../IndexSection";
 
 const articles: ArticleCardProps[] = [
   {
+    id: 1,
     image: {
       src: "https://picsum.photos/600/400?random=1",
       alt: "",
@@ -14,6 +15,7 @@ const articles: ArticleCardProps[] = [
     href: "#",
   },
   {
+    id: 2,
     image: {
       src: "https://picsum.photos/600/400?random=2",
       alt: "",
@@ -23,6 +25,7 @@ const articles: ArticleCardProps[] = [
     href: "#",
   },
   {
+    id: 3,
     image: {
       src: "https://picsum.photos/600/400?random=3",
       alt: "",
@@ -39,6 +42,7 @@ const IndexArticles = () => {
       <div className="index-articles">
         {articles.map((article) => (
           <ArticleCard
+            key={article.id}
             image={{ src: article.image.src, alt: article.image.alt }}
             href={article.href}
             title={article.title}

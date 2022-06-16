@@ -1,0 +1,12 @@
+.category {
+  @apply flex flex-col justify-center items-center gap-2;
+
+  &__image {
+    max-height: 69px;
+    @apply w-auto;
+  }
+
+  &__label {
+    @apply font-bold text-lg leading-5 text-center;
+  }
+}
