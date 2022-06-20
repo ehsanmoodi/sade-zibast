@@ -1,0 +1,30 @@
+.payment-card {
+  @apply bg-white rounded-lg;
+  @apply py-5 px-6;
+  @apply flex flex-col gap-2;
+  box-shadow: 0px 4px 80px rgba(0, 0, 0, 0.04);
+
+  &__date {
+    @apply font-bold text-xl leading-8 text-opacity-90;
+  }
+
+  &__items {
+    @apply grid grid-cols-2 gap-4;
+
+    div {
+      @apply flex flex-col;
+
+      span {
+        @apply font-normal text-base;
+
+        &:first-child {
+          @apply text-opacity-60;
+        }
+
+        &:last-child {
+          @apply font-bold text-opacity-90;
+        }
+      }
+    }
+  }
+}
