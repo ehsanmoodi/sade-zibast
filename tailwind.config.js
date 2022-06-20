@@ -9,6 +9,9 @@ module.exports = {
       colors: {
         "sea-green": "#369863",
         "wild-sand": "#F5F5F5",
+        "vista-white": "#FCF7F7",
+        "chestnut-rose": "#D04B4B",
+        chablis: "#FFF1F1",
       },
       keyframes: {
         "bounce-horizontal": {

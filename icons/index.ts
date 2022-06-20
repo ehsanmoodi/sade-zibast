@@ -3,5 +3,19 @@ import LogoLinear from "./logo-linear.svg";
 import AccountCircle from "./account_circle.svg";
 import Heart from "./heart.svg";
 import LeftArrow from "./left-arrow.svg";
+import EnvelopeInvitation from "./envelope-invitation.svg";
+import SingleUser from "./single-user.svg";
+import CreditCard from "./credit-card.svg";
+import Exit from "./exit.svg";
 
-export { Logo, LogoLinear, AccountCircle, Heart, LeftArrow };
+export {
+  Logo,
+  LogoLinear,
+  AccountCircle,
+  Heart,
+  LeftArrow,
+  EnvelopeInvitation,
+  SingleUser,
+  CreditCard,
+  Exit,
+};
