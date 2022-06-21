@@ -1,0 +1,16 @@
+.new-invitation-card {
+  @apply bg-sea-green rounded-lg;
+  box-shadow: 0px 4px 80px rgba(0, 0, 0, 0.04);
+
+  @apply font-normal text-xl text-white;
+  @apply flex flex-row justify-center items-center lg:flex-col;
+  @apply fixed z-10 bottom-6 left-6 right-6 lg:relative lg:bottom-0 lg:left-0 lg:right-0;
+
+  svg {
+    transform: scale(0.6);
+
+    @screen lg {
+      transform: none;
+    }
+  }
+}

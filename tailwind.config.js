@@ -12,6 +12,7 @@ module.exports = {
         "vista-white": "#FCF7F7",
         "chestnut-rose": "#D04B4B",
         chablis: "#FFF1F1",
+        alto: "#D5D5D5",
       },
       keyframes: {
         "bounce-horizontal": {

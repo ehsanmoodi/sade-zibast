@@ -13,6 +13,9 @@
 @import "./components/category";
 @import "./components/payment_card";
 @import "./components/input";
+@import "./components/invitation_card";
+@import "./components/new_invitation_card";
+@import "./components/switch";
 
 // layout
 @import "./layout/main_header";
@@ -27,3 +30,4 @@
 // pages
 @import "./pages/payments";
 @import "./pages/profile";
+@import "./pages/cards";

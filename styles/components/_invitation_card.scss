@@ -1,0 +1,43 @@
+.invitation-card {
+  @apply bg-white rounded-lg;
+  @apply px-6;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  @apply border border-white;
+  @apply transition-all;
+  @apply hover:border-chestnut-rose;
+
+  box-shadow: 0px 4px 80px rgba(0, 0, 0, 0.04);
+
+  &__title {
+    @apply font-bold text-xl text-opacity-90;
+  }
+
+  &__link {
+    @apply font-normal text-base leading-7 text-opacity-60;
+  }
+
+  &__actions {
+    @apply flex items-center justify-between;
+    @apply mt-4;
+
+    &__btns {
+      @apply flex gap-4;
+
+      svg {
+        path {
+          @apply transition-all;
+        }
+      }
+
+      a:hover {
+        svg {
+          path {
+            @apply fill-chestnut-rose;
+            fill-opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
