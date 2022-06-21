@@ -60,9 +60,11 @@ const PanelTemplate: React.FC<Props> = ({
 
       <main className="panel">
         <div className="panel__menu">
-          <div className="panel__menu__logo">
-            <LogoLinear />
-          </div>
+          <Link href="/">
+            <a className="panel__menu__logo">
+              <LogoLinear />
+            </a>
+          </Link>
           <ul className="panel__menu__items">
             {menuItems.map((item) => (
               <li key={item.key}>

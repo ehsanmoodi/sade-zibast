@@ -12,6 +12,7 @@
 @import "./components/article_card";
 @import "./components/category";
 @import "./components/payment_card";
+@import "./components/input";
 
 // layout
 @import "./layout/main_header";
@@ -25,3 +26,4 @@
 
 // pages
 @import "./pages/payments";
+@import "./pages/profile";

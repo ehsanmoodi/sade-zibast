@@ -1,0 +1,40 @@
+.input {
+  @apply font-normal leading-6;
+  @apply border border-black border-opacity-20 rounded-lg;
+  @apply flex flex-col;
+  @apply px-4;
+  @apply relative z-0;
+  @apply bg-vista-white;
+  font-size: 22px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  label {
+    @apply text-opacity-60;
+    @apply absolute z-10;
+    @apply transition-all;
+    @apply bg-inherit px-1;
+    top: 15px;
+  }
+
+  input {
+    @apply text-opacity-90 bg-inherit;
+    @apply relative;
+    @apply focus:outline-none;
+
+    &:focus + label {
+      @apply -top-3;
+    }
+
+    &.not-empty + label {
+      @apply -top-3;
+    }
+
+    &[type="number"] {
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+    }
+  }
+}
