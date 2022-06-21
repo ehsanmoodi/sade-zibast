@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { useState } from "react";
-import { Input } from "../../components";
+import { Button, Input } from "../../components";
 import { InputProps } from "../../components/Input/types";
 import { PanelTemplate } from "../../templates";
 
@@ -69,7 +69,9 @@ const Profile: NextPage<ProfileProps> = ({ data }) => {
             />
           ))}
         </div>
-        <div className="profile__actions"></div>
+        <div className="profile__actions">
+          <Button>ثبت</Button>
+        </div>
       </div>
     </PanelTemplate>
   );

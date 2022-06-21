@@ -1,0 +1,12 @@
+.button {
+  @apply font-normal text-xl leading-5;
+  @apply px-7 py-2;
+  @apply rounded-md;
+
+  &--primary {
+    @apply border border-sea-green;
+    @apply bg-sea-green text-white;
+    @apply transition-all;
+    @apply hover:bg-transparent hover:text-sea-green;
+  }
+}
