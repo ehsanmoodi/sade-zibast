@@ -1,0 +1,56 @@
+.index-hero {
+  @apply mt-16 ml-12 mr-12;
+  @apply flex flex-col gap-7;
+  @apply text-center;
+
+  @screen lg {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 4px 80px rgba(0, 0, 0, 0.04);
+    @apply rounded-2xl;
+    @apply max-w-4xl;
+    min-height: 540px;
+    @apply mx-auto;
+    @apply py-20;
+    @apply relative;
+    @apply overflow-hidden;
+  }
+
+  &__title {
+    @apply lg:relative lg:z-10;
+    @apply font-normal;
+    font-size: 56px;
+    line-height: 63px;
+
+    @screen lg {
+      font-size: 64px;
+      line-height: 72px;
+    }
+
+    strong {
+      @apply font-bold;
+    }
+  }
+
+  &__subtitle {
+    @apply flex items-center justify-center gap-1;
+    @apply font-normal leading-9;
+    font-size: 32px;
+    @apply lg:relative lg:z-10;
+  }
+
+  &__action {
+    @apply self-center;
+
+    @screen lg {
+      // box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.04);
+      @apply rounded-lg;
+      @apply absolute w-full top-0 z-0;
+      min-height: 85%;
+      @apply flex justify-center items-end;
+      background-image: url("/pocket-bg.png");
+      @apply bg-no-repeat bg-top;
+      @apply pb-6;
+    }
+  }
+}

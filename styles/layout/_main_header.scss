@@ -39,5 +39,9 @@
   &__action {
     @apply flex;
     @apply gap-1;
+
+    span {
+      @apply hidden lg:inline-flex;
+    }
   }
 }

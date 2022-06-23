@@ -6,6 +6,7 @@ import {
   MainFooter,
   IndexArticles,
   IndexCategories,
+  IndexHero,
 } from "../components";
 
 const Home: NextPage = () => {
@@ -22,6 +23,7 @@ const Home: NextPage = () => {
       <MainHeader />
 
       <main>
+        <IndexHero />
         <IndexCategories />
         <IndexArticles />
       </main>
