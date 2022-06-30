@@ -1,0 +1,11 @@
+.index-slide {
+  height: 400px;
+
+  @screen lg {
+    height: 490px;
+  }
+
+  img {
+    @apply object-cover object-center;
+  }
+}

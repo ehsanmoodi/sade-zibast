@@ -1,9 +1,36 @@
 .header {
+  @apply sticky top-0 z-50;
   @apply bg-white;
   @apply py-4;
   box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.04);
 
   @apply font-normal text-lg;
+
+  &__toggle {
+    @apply lg:hidden;
+    @apply flex flex-col gap-1;
+
+    span {
+      @apply block w-5 bg-baltic-sea;
+      height: 2px;
+      @apply transition-all;
+      @apply duration-700;
+    }
+
+    &.open {
+      span {
+        &:first-child {
+          transform: translateY(4px) rotate(45deg);
+          @apply origin-center;
+        }
+
+        &:last-child {
+          transform: translateY(-2px) rotate(-45deg);
+          @apply origin-center;
+        }
+      }
+    }
+  }
 
   &__logo {
     @apply max-h-8;
@@ -14,8 +41,18 @@
   }
 
   &__links {
-    @screen lg {
-      @apply flex items-center gap-12;
+    @apply hidden;
+    @apply lg:flex lg:items-center lg:gap-12;
+    @apply transition-all;
+
+    &.open {
+      @media (max-width: 1024px) {
+        box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.07);
+        @apply bg-white;
+        @apply flex flex-col items-center gap-5;
+        @apply py-5;
+        @apply absolute left-0 right-0 top-full;
+      }
     }
 
     li {

@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-const Slider: React.FC = () => {
+import type { GeneralSliderProps } from "./types";
+
+const GeneralSlider: React.FC<GeneralSliderProps> = ({ slides }) => {
   const [isSSR, setIsSSR] = useState(true);
 
   useEffect(() => {
@@ -18,22 +20,19 @@ const Slider: React.FC = () => {
       }}
       modules={[Navigation]}
       navigation
-      loop
+      loop={slides.length >= 3}
       centeredSlides
       grabCursor
       spaceBetween={16}
       slidesPerView={3}
     >
-      <SwiperSlide>Slide 1</SwiperSlide>
-      <SwiperSlide>Slide 2</SwiperSlide>
-      <SwiperSlide>Slide 3</SwiperSlide>
-      <SwiperSlide>Slide 4</SwiperSlide>
-      <SwiperSlide>Slide 5</SwiperSlide>
-      <SwiperSlide>Slide 6</SwiperSlide>
+      {slides.map((item) => (
+        <SwiperSlide key={item.id}>{item.slide}</SwiperSlide>
+      ))}
     </Swiper>
   ) : (
     <div></div>
   );
 };
 
-export default Slider;
+export default GeneralSlider;

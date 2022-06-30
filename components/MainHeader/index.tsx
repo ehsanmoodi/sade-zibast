@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 import { AccountCircle, LogoLinear } from "../../icons";
 
@@ -30,17 +31,30 @@ const links: LinkProps[] = [
 
 const MainHeader = () => {
   const router = useRouter();
+  const [isActive, setIsActive] = useState<boolean>(false);
+
+  const toggleMenu = () => {
+    setIsActive(!isActive);
+  };
 
   return (
     <header className="header">
       <div className="container mx-auto flex justify-between items-center px-4 lg:px-0">
+        <button
+          onClick={toggleMenu}
+          className={`header__toggle ${isActive && "open"}`}
+        >
+          <span></span>
+          <span></span>
+        </button>
+
         <Link href="/">
           <a className="header__logo">
             <LogoLinear />
           </a>
         </Link>
 
-        <ul className="header__links">
+        <ul className={`header__links ${isActive && "open"}`}>
           {links.map((link: LinkProps) => (
             <li key={link.key}>
               <Link href={link.href}>

@@ -12,5 +12,6 @@ export { default as Input } from "./Input";
 export { default as InvitationCard } from "./InvitationCard";
 export { default as NewInvitationCard } from "./NewInvitationCard";
 export { default as Switch } from "./Switch";
-export { default as Slider } from "./Slider";
+export { default as Slider } from "./GeneralSlider";
 export { default as IndexSlider } from "./IndexSlider";
+export { default as IndexSlide } from "./IndexSlide";

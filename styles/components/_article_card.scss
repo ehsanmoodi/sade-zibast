@@ -2,13 +2,13 @@
   @apply w-full;
 
   &__image {
+    @apply relative;
     @apply rounded;
     @apply h-48;
 
     img {
       @apply rounded;
-      @apply w-full h-full;
-      @apply bg-cover object-cover bg-center object-center;
+      @apply object-cover object-center;
     }
   }
 

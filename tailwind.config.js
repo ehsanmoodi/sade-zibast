@@ -13,6 +13,7 @@ module.exports = {
         "chestnut-rose": "#D04B4B",
         chablis: "#FFF1F1",
         alto: "#D5D5D5",
+        "baltic-sea": "#1C1B1F",
       },
       keyframes: {
         "bounce-horizontal": {

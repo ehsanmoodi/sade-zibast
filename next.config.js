@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    domains: ["picsum.photos"],
+  },
   i18n: {
     locales: ["fa-IR"],
     defaultLocale: "fa-IR",

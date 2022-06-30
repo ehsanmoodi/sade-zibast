@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ArticleCardProps } from "./types";
 
@@ -10,7 +11,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   return (
     <article className="article-card">
       <div className="article-card__image">
-        <img src={image.src} alt={image.alt ?? ""} />
+        <Image src={image.src} alt={image.alt} layout="fill" />
       </div>
       <Link href={href}>
         <a className="article-card__link">{title}</a>
