@@ -7,6 +7,7 @@ import {
   IndexArticles,
   IndexCategories,
   IndexHero,
+  IndexSlider,
 } from "../components";
 
 const Home: NextPage = () => {
@@ -24,6 +25,7 @@ const Home: NextPage = () => {
 
       <main>
         <IndexHero />
+        <IndexSlider />
         <IndexCategories />
         <IndexArticles />
       </main>

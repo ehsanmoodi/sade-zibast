@@ -1,0 +1,72 @@
+@import "swiper/scss";
+@import "swiper/scss/navigation";
+
+.swiper {
+  width: 250vw;
+  right: -75vw;
+
+  @screen md {
+    width: 150vw;
+    right: -25vw;
+  }
+
+  @screen lg {
+    width: 125vw;
+    right: -12.5vw;
+  }
+
+  // @apply -ml-64 -mr-60;
+
+  &-wrapper {
+    @apply py-2;
+  }
+}
+
+.swiper-slide {
+  @apply flex justify-center items-center;
+  @apply bg-white rounded;
+  min-height: 100px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+
+  &-active {
+    border: 2px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0px 4px 80px rgba(0, 0, 0, 0.04);
+  }
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  @apply bg-white rounded-full w-10 h-10 border border-black border-opacity-10;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.06);
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cmask id='mask0_13_723' style='mask-type:alpha' maskUnits='userSpaceOnUse' x='0' y='0' width='24' height='24'%3E%3Crect width='24' height='24' fill='%23D9D9D9'/%3E%3C/mask%3E%3Cg mask='url(%23mask0_13_723)'%3E%3Cpath d='M8.00001 21.1804L6.95001 20.0977L15.175 11.5902L6.95001 3.08277L8.00001 2L17.325 11.5902L8.00001 21.1804Z' fill='black' fill-opacity='0.4'/%3E%3C/g%3E%3C/svg%3E%0A");
+  @apply bg-no-repeat bg-center;
+
+  &::after {
+    content: none !important;
+  }
+}
+
+.swiper-button-next {
+  @apply rotate-180;
+  left: calc(1.5rem + 75vw) !important;
+
+  @screen md {
+    left: calc(1.5rem + 25vw) !important;
+  }
+
+  @screen lg {
+    left: calc(2.5rem + 12.5vw) !important;
+  }
+}
+
+.swiper-button-prev {
+  right: calc(1.5rem + 75vw) !important;
+
+  @screen md {
+    right: calc(1.5rem + 25vw) !important;
+  }
+
+  @screen lg {
+    right: calc(2.5rem + 12.5vw) !important;
+  }
+}
