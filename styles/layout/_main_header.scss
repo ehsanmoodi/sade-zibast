@@ -7,8 +7,8 @@
   @apply font-normal text-lg;
 
   &__toggle {
-    @apply lg:hidden;
     @apply flex flex-col gap-1;
+    @apply lg:hidden;
 
     span {
       @apply block w-5 bg-baltic-sea;
