@@ -66,7 +66,7 @@ const MainHeader = () => {
           ))}
         </ul>
 
-        <Link href="/panel">
+        <Link href="/panel/cards">
           <a className="header__action">
             <span>ورود به حساب</span>
             <AccountCircle />

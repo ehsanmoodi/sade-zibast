@@ -3,7 +3,7 @@ import { Add } from "../../icons";
 
 const NewInvitationCard: React.FC = () => {
   return (
-    <Link href="/panel/cards/new">
+    <Link href="/panel/cards/create">
       <a className="new-invitation-card">
         <Add />
         ایجاد کارت جدید
