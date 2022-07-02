@@ -1,0 +1,50 @@
+.login-page {
+  @apply py-10 px-6 lg:p-16;
+  @apply grid grid-cols-12 justify-center items-center;
+
+  div {
+    @apply col-span-12 lg:col-span-4 lg:col-start-5;
+    @apply flex flex-col gap-10;
+
+    .input {
+      @apply bg-white;
+    }
+
+    button {
+      @apply self-center;
+      @apply py-3;
+    }
+  }
+
+  &__text {
+    @apply font-bold text-lg text-opacity-60;
+    opacity: 0.6;
+    @apply text-center;
+  }
+
+  &__timer {
+    @apply font-bold text-lg;
+    @apply text-center;
+    opacity: 0.38;
+  }
+
+  &__request-again {
+    @apply font-bold text-lg;
+    @apply text-center;
+    @apply transition-all;
+    @apply underline underline-offset-8;
+    @apply hover:text-sea-green;
+  }
+
+  &__edit-number {
+    @apply font-bold text-lg leading-none;
+    opacity: 0.87;
+    @apply border border-geyser;
+    border-radius: 40px;
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
+    @apply flex items-center gap-2;
+    @apply px-4;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+}

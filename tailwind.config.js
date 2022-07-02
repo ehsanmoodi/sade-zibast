@@ -14,6 +14,7 @@ module.exports = {
         chablis: "#FFF1F1",
         alto: "#D5D5D5",
         "baltic-sea": "#1C1B1F",
+        geyser: "#D1D9DD",
       },
       keyframes: {
         "bounce-horizontal": {
