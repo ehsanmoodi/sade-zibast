@@ -11,6 +11,7 @@ import Edit from "./edit.svg";
 import Delete from "./delete.svg";
 import Add from "./add.svg";
 import WinkyIcon from "./winky-icon.svg";
+import Close from "./close.svg";
 
 export {
   Logo,
@@ -26,4 +27,5 @@ export {
   Delete,
   Add,
   WinkyIcon,
+  Close,
 };

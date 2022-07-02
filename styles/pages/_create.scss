@@ -1,0 +1,8 @@
+.create-page {
+  @apply py-9 px-4 lg:py-11 lg:px-16;
+  @apply grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16;
+
+  div {
+    @apply border border-blue-300;
+  }
+}

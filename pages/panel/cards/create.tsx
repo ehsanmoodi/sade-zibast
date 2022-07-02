@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { InnerHeader } from "../../../components";
 
 const CreateCards: NextPage = () => {
   return (
@@ -12,8 +13,14 @@ const CreateCards: NextPage = () => {
         />
       </Head>
 
-      <main className="w-screen h-screen flex items-center justify-center">
-        <h1>Create New Cart</h1>
+      <InnerHeader title="ایجاد کارت دعوت جدید" backLink="/panel/cards" />
+
+      <main>
+        <div className="create-page">
+          <div>ردیف اول</div>
+          <div>ردیف دوم</div>
+          <div>ردیف سوم</div>
+        </div>
       </main>
     </>
   );

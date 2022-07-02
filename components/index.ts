@@ -15,3 +15,4 @@ export { default as Switch } from "./Switch";
 export { default as Slider } from "./GeneralSlider";
 export { default as IndexSlider } from "./IndexSlider";
 export { default as IndexSlide } from "./IndexSlide";
+export { default as InnerHeader } from "./InnerHeader";

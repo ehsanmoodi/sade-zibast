@@ -1,0 +1,13 @@
+.inner-header {
+  @apply sticky top-0;
+  @apply bg-white p-5;
+  @apply flex items-center gap-8;
+  box-shadow: 0px 1px 0px #d4dbdd;
+  filter: drop-shadow(0px 1px 0px #d4dbdd);
+  @apply font-normal text-xl text-opacity-90;
+
+  &__back {
+    @apply transition-all;
+    @apply hover:rotate-90;
+  }
+}
