@@ -9,21 +9,72 @@
 
   &__menu {
     @apply bg-white;
+    @apply flex items-center justify-between;
+    @apply p-4;
+    @apply lg:w-72;
+    @apply lg:flex-col lg:items-stretch lg:gap-6;
+    @apply lg:py-8 lg:px-2;
 
-    @screen lg {
-      @apply w-72;
-      @apply flex flex-col gap-6;
-      @apply py-8 px-2;
+    @media (max-width: 1024px) {
+      @apply sticky top-0 z-50;
     }
 
     &__logo {
       @apply self-center;
     }
 
+    &__account {
+      @apply lg:hidden;
+    }
+
     &__items {
+      @apply lg:block;
+      @apply transition-all;
+
+      @media (max-width: 1024px) {
+        @apply bg-white;
+        @apply flex flex-row items-center;
+        @apply absolute left-0 right-0 top-full;
+        @apply h-0 overflow-hidden;
+
+        transition-property: height;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 200ms;
+
+        li {
+          @apply grow w-full h-full flex;
+          @apply opacity-0;
+          @apply transition-opacity;
+          @apply duration-1000;
+
+          a {
+            @apply w-full text-center flex items-center justify-center;
+
+            svg {
+              @apply hidden;
+            }
+
+            &.active {
+              @apply border-b-2 border-chestnut-rose;
+            }
+          }
+        }
+      }
+
+      &.open {
+        @media (max-width: 1024px) {
+          box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.07);
+          @apply h-14;
+
+          li {
+            @apply opacity-100;
+          }
+        }
+      }
+
       li {
         a {
-          @apply font-normal text-opacity-60 lg:text-xl;
+          @apply font-normal opacity-60 text-opacity-60 lg:text-lg;
           @apply lg:flex lg:gap-3 lg:items-center;
           @apply lg:px-4 lg:py-2;
           @apply lg:rounded-sm;
@@ -48,7 +99,7 @@
           }
 
           &.active {
-            @apply text-chestnut-rose font-bold text-opacity-100;
+            @apply text-chestnut-rose font-bold opacity-100 text-opacity-100;
             @apply lg:bg-chablis;
 
             svg {
@@ -69,7 +120,7 @@
 
     &__text {
       @apply font-normal text-lg leading-5 text-opacity-70;
-      @apply flex justify-center items-center gap-1;
+      @apply hidden lg:flex lg:justify-center lg:items-center lg:gap-1;
       @apply mt-auto;
     }
   }

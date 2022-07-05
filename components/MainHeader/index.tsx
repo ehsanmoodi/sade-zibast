@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 import { AccountCircle, LogoLinear } from "../../icons";
+import ToggleIcon from "../ToggleIcon";
 
 import type { LinkProps } from "./types";
 
@@ -40,13 +41,7 @@ const MainHeader = () => {
   return (
     <header className="header">
       <div className="container mx-auto flex justify-between items-center px-4 lg:px-0">
-        <button
-          onClick={toggleMenu}
-          className={`header__toggle ${isActive && "open"}`}
-        >
-          <span></span>
-          <span></span>
-        </button>
+        <ToggleIcon onClick={toggleMenu} isActive={isActive} />
 
         <Link href="/">
           <a className="header__logo">

@@ -1,7 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import ToggleIcon from "../../components/ToggleIcon";
 import {
+  AccountCircle,
   CreditCard,
   EnvelopeInvitation,
   Exit,
@@ -50,6 +53,11 @@ const PanelTemplate: React.FC<Props> = ({
   children,
 }) => {
   const router = useRouter();
+  const [isActive, setIsActive] = useState<boolean>(false);
+
+  const toggleMenu = () => {
+    setIsActive(!isActive);
+  };
 
   return (
     <>
@@ -60,12 +68,19 @@ const PanelTemplate: React.FC<Props> = ({
 
       <main className="panel">
         <div className="panel__menu">
+          <ToggleIcon onClick={toggleMenu} isActive={isActive} />
+
           <Link href="/">
             <a className="panel__menu__logo">
               <LogoLinear />
             </a>
           </Link>
-          <ul className="panel__menu__items">
+
+          <div className="panel__menu__account">
+            <AccountCircle />
+          </div>
+
+          <ul className={`panel__menu__items ${isActive && "open"}`}>
             {menuItems.map((item) => (
               <li key={item.key}>
                 <Link href={item.href}>

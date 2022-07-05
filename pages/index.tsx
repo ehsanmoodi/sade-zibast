@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useEffect } from "react";
 
 import {
   MainHeader,
@@ -11,6 +12,10 @@ import {
 } from "../components";
 
 const Home: NextPage = () => {
+  useEffect(() => {
+    console.log(process.env.NEXT_PUBLIC_API_URL);
+  }, []);
+
   return (
     <>
       <Head>

@@ -35,25 +35,25 @@ export const getServerSideProps = () => {
     {
       id: 1,
       title: "کارت دعوت عروسی سرور و مشتاق",
-      link: "smwedding.sadehzibast.ir",
+      link: "https://smwedding.sadehzibast.ir",
       active: false,
     },
     {
       id: 2,
       title: "کارت دعوت عروسی سرور و مشتاق",
-      link: "smwedding.sadehzibast.ir",
+      link: "https://smwedding.sadehzibast.ir",
       active: true,
     },
     {
       id: 3,
       title: "کارت دعوت عروسی سرور و مشتاق",
-      link: "smwedding.sadehzibast.ir",
+      link: "https://smwedding.sadehzibast.ir",
       active: true,
     },
     {
       id: 4,
       title: "کارت دعوت عروسی سرور و مشتاق",
-      link: "smwedding.sadehzibast.ir",
+      link: "https://smwedding.sadehzibast.ir",
       active: false,
     },
   ];
