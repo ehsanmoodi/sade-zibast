@@ -1,0 +1,25 @@
+.toggle_icon {
+  @apply flex flex-col gap-1;
+  @apply lg:hidden;
+
+  span {
+    @apply block w-5 bg-baltic-sea;
+    height: 2px;
+    @apply transition-all;
+    @apply duration-700;
+  }
+
+  &.open {
+    span {
+      &:first-child {
+        transform: translateY(4px) rotate(45deg);
+        @apply origin-center;
+      }
+
+      &:last-child {
+        transform: translateY(-2px) rotate(-45deg);
+        @apply origin-center;
+      }
+    }
+  }
+}
