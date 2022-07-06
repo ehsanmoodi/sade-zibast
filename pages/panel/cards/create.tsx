@@ -1,8 +1,14 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { InnerHeader } from "../../../components";
+import { useState } from "react";
+import { Button, InnerHeader, Input } from "../../../components";
 
 const CreateCards: NextPage = () => {
+  const [data, setData] = useState({
+    name: "",
+    link: "",
+  });
+
   return (
     <>
       <Head>
@@ -13,13 +19,35 @@ const CreateCards: NextPage = () => {
         />
       </Head>
 
-      <InnerHeader title="ایجاد کارت دعوت جدید" backLink="/panel/cards" />
+      <main className="min-h-screen bg-vista-white">
+        <InnerHeader title="ایجاد کارت دعوت جدید" backLink="/panel/cards" />
 
-      <main>
         <div className="create-page">
-          <div>ردیف اول</div>
-          <div>ردیف دوم</div>
-          <div>ردیف سوم</div>
+          <div className="create-page__col">
+            <Input
+              id="name"
+              type="text"
+              label="عنوان کارت"
+              value={data.name}
+              onChange={(event) =>
+                setData({ ...data, name: event.target.value })
+              }
+            />
+            <Input
+              id="link"
+              type="text"
+              dir="ltr"
+              guide=".sadezibast.ir"
+              value={data.link}
+              onChange={(event) =>
+                setData({ ...data, link: event.target.value })
+              }
+            />
+          </div>
+          <div className="create-page__col"></div>
+          <div className="create-page__col">
+            <Button>پرداخت</Button>
+          </div>
         </div>
       </main>
     </>

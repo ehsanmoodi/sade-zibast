@@ -1,8 +1,17 @@
 import type { InputProps } from "./types";
 
-const Input: React.FC<InputProps> = ({ id, label, type, value, ...props }) => {
+const Input: React.FC<InputProps> = ({
+  id,
+  label,
+  type,
+  value,
+  dir = "rtl",
+  guide,
+  ...props
+}) => {
   return (
-    <div className="input">
+    <div className="input" dir={dir}>
+      {guide && <span>{guide}</span>}
       <input
         className={`${value && "not-empty"}`}
         value={value ?? ""}
@@ -10,7 +19,7 @@ const Input: React.FC<InputProps> = ({ id, label, type, value, ...props }) => {
         type={type}
         {...props}
       />
-      <label htmlFor={id}>{label}</label>
+      {label && <label htmlFor={id}>{label}</label>}
     </div>
   );
 };

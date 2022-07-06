@@ -1,13 +1,29 @@
 .input {
   @apply font-normal leading-6;
   @apply border border-black border-opacity-20 rounded-lg;
-  @apply flex flex-col;
+  @apply flex flex-row items-center gap-1;
   @apply px-4;
   @apply relative z-0;
   @apply bg-vista-white;
   font-size: 22px;
   padding-top: 15px;
   padding-bottom: 15px;
+
+  input {
+    @apply order-1;
+  }
+
+  label {
+    @apply order-2;
+  }
+
+  span {
+    @apply order-3;
+  }
+
+  span {
+    @apply opacity-60;
+  }
 
   label {
     @apply text-opacity-60;
@@ -18,7 +34,9 @@
   }
 
   input {
-    @apply text-opacity-90 bg-inherit;
+    @apply grow;
+    @apply text-opacity-90 bg-inherit text-start;
+    @apply opacity-90;
     @apply relative;
     @apply focus:outline-none;
 
