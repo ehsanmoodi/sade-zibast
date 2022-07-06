@@ -1,0 +1,14 @@
+.input-group {
+  @apply flex flex-col gap-2;
+
+  &__title {
+    @apply font-bold text-xl;
+    @apply opacity-90;
+  }
+
+  &__description,
+  &__guide {
+    @apply font-normal text-lg;
+    @apply opacity-60;
+  }
+}

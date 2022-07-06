@@ -6,12 +6,12 @@ const Input: React.FC<InputProps> = ({
   type,
   value,
   dir = "rtl",
-  guide,
+  extra,
   ...props
 }) => {
   return (
     <div className="input" dir={dir}>
-      {guide && <span>{guide}</span>}
+      {extra && <span>{extra}</span>}
       <input
         className={`${value && "not-empty"}`}
         value={value ?? ""}

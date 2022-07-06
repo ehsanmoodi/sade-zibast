@@ -5,5 +5,5 @@ export interface InputProps
   label?: string;
   value?: string | number;
   dir?: string;
-  guide?: string | JSX.Element | ReactElement;
+  extra?: string | JSX.Element | ReactElement;
 }
