@@ -60,6 +60,36 @@
               }
             }
           }
+
+          .rmdp-month-picker {
+            .rmdp-day.rmdp-today span {
+              @apply bg-sea-green bg-opacity-60;
+            }
+
+            .rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:hover {
+              @apply bg-sea-green;
+            }
+
+            .rmdp-day.rmdp-selected span:not(.highlight) {
+              @apply bg-sea-green;
+              @apply shadow-lg shadow-sea-green;
+            }
+          }
+
+          .rmdp-year-picker {
+            .rmdp-day.rmdp-today span {
+              @apply bg-sea-green bg-opacity-60;
+            }
+
+            .rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:hover {
+              @apply bg-sea-green;
+            }
+
+            .rmdp-day.rmdp-selected span:not(.highlight) {
+              @apply bg-sea-green;
+              @apply shadow-lg shadow-sea-green;
+            }
+          }
         }
       }
 
