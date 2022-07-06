@@ -18,7 +18,10 @@ const CreateCards: NextPage = () => {
     description_second: "",
     address: "",
     date_description: "",
+    date: "1400-01-02",
   });
+
+  const price = 290000;
 
   return (
     <>
@@ -101,6 +104,26 @@ const CreateCards: NextPage = () => {
                 }
               />
             </InputGroup>
+            <InputGroup
+              title="لطفا تاریخ را برای ثبت در سیستم مجددا انتخاب کنید."
+              guide="کارت دعوت یک هفته پس از این تاریخ منقضی خواهد شد."
+            >
+              <Input
+                id="date"
+                type="date"
+                value={data.date}
+                onChange={(event) =>
+                  setData({ ...data, date: event.target.value })
+                }
+              />
+            </InputGroup>
+            <div className="create-page__invoice">
+              <div className="create-page__invoice__title">فاکتور</div>
+              <div className="create-page__invoice__pricing">
+                <span>تعرفه کارت دعوت</span>
+                <span>{price} تومان</span>
+              </div>
+            </div>
             <Button>پرداخت</Button>
           </div>
         </div>

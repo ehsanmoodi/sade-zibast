@@ -1,5 +1,5 @@
 .inner-header {
-  @apply sticky top-0;
+  @apply sticky top-0 z-50;
   @apply bg-white p-5;
   @apply flex items-center gap-8;
   box-shadow: 0px 1px 0px #d4dbdd;
