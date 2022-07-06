@@ -3,22 +3,32 @@ import Head from "next/head";
 import { useState } from "react";
 import {
   Button,
+  DateInput,
   InnerHeader,
   Input,
   InputGroup,
   TextArea,
 } from "../../../components";
-import { AccountCircle } from "../../../icons";
+
+import type { Value as DateValue } from "react-multi-date-picker";
 
 const CreateCards: NextPage = () => {
-  const [data, setData] = useState({
+  const [data, setData] = useState<{
+    name: string;
+    link: string;
+    description: string;
+    description_second: string;
+    address: string;
+    date_description: string;
+    date: DateValue;
+  }>({
     name: "",
     link: "",
     description: "",
     description_second: "",
     address: "",
     date_description: "",
-    date: "1400-01-02",
+    date: new Date(),
   });
 
   const price = 290000;
@@ -108,13 +118,9 @@ const CreateCards: NextPage = () => {
               title="لطفا تاریخ را برای ثبت در سیستم مجددا انتخاب کنید."
               guide="کارت دعوت یک هفته پس از این تاریخ منقضی خواهد شد."
             >
-              <Input
-                id="date"
-                type="date"
+              <DateInput
                 value={data.date}
-                onChange={(event) =>
-                  setData({ ...data, date: event.target.value })
-                }
+                onChangeInput={(value) => setData({ ...data, date: value })}
               />
             </InputGroup>
             <div className="create-page__invoice">
