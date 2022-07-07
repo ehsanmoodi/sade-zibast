@@ -13,6 +13,7 @@ import Add from "./add.svg";
 import WinkyIcon from "./winky-icon.svg";
 import Close from "./close.svg";
 import Calendar from "./calendar.svg";
+import Upload from "./upload.svg";
 
 export {
   Logo,
@@ -30,4 +31,5 @@ export {
   WinkyIcon,
   Close,
   Calendar,
+  Upload,
 };

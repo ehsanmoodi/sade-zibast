@@ -19,3 +19,4 @@ export { default as InnerHeader } from "./InnerHeader";
 export { default as TextArea } from "./TextArea";
 export { default as InputGroup } from "./InputGroup";
 export { default as DateInput } from "./DateInput";
+export { default as Dropzone } from "./Dropzone";

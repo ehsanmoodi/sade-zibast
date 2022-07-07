@@ -1,0 +1,26 @@
+.dropzone {
+  .area {
+    @apply flex items-center justify-center gap-4;
+    @apply bg-white h-24;
+    @apply border-2 border-dashed border-black border-opacity-20 rounded-lg;
+    @apply font-normal text-lg;
+
+    span {
+      opacity: 0.38;
+    }
+  }
+}
+
+.thumbs {
+  @apply grid grid-cols-3 mt-4 gap-4;
+
+  div {
+    @apply relative;
+    @apply rounded-lg h-28;
+    @apply border border-black border-opacity-20;
+
+    img {
+      @apply rounded-lg;
+    }
+  }
+}

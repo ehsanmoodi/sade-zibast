@@ -1,9 +1,10 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Button,
   DateInput,
+  Dropzone,
   InnerHeader,
   Input,
   InputGroup,
@@ -11,8 +12,16 @@ import {
 } from "../../../components";
 
 import type { Value as DateValue } from "react-multi-date-picker";
+import Image from "next/image";
 
 const CreateCards: NextPage = () => {
+  const [images, setImages] = useState<
+    {
+      imageFile: File;
+      preview: any;
+    }[]
+  >([]);
+
   const [data, setData] = useState<{
     name: string;
     link: string;
@@ -32,6 +41,24 @@ const CreateCards: NextPage = () => {
   });
 
   const price = 290000;
+
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    acceptedFiles.map((file) => {
+      setImages((prevImages) => [
+        ...prevImages,
+        {
+          imageFile: file,
+          preview: URL.createObjectURL(file),
+        },
+      ]);
+
+      return file;
+    });
+  }, []);
+
+  useEffect(() => {
+    return () => images.forEach((image) => URL.revokeObjectURL(image.preview));
+  }, []);
 
   return (
     <>
@@ -81,6 +108,22 @@ const CreateCards: NextPage = () => {
                 setData({ ...data, description: event.target.value })
               }
             />
+            <InputGroup title="گالری تصاویر">
+              <Dropzone onDrop={onDrop} />
+              <div className="thumbs">
+                {images.map((image) => (
+                  <div key={image.imageFile.name}>
+                    <Image
+                      src={image.preview}
+                      alt={image.imageFile.name}
+                      layout="fill"
+                      objectFit="contain"
+                      objectPosition="center"
+                    />
+                  </div>
+                ))}
+              </div>
+            </InputGroup>
           </div>
           <div className="create-page__col">
             <TextArea
