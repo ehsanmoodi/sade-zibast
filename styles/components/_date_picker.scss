@@ -25,7 +25,11 @@
   }
 
   .rmdp-calendar-container-mobile {
+    z-index: 1000 !important;
+
     .rmdp-wrapper {
+      z-index: 1200 !important;
+
       .rmdp-top-class {
         .rmdp-calendar {
           .rmdp-header {

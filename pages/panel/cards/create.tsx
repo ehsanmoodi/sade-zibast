@@ -9,6 +9,7 @@ import {
   InnerHeader,
   Input,
   InputGroup,
+  MapModal,
   TextArea,
 } from "../../../components";
 
@@ -18,8 +19,23 @@ const MapWithNoSSR = dynamic(() => import("../../../components/Map"), {
 
 import type { Value as DateValue } from "react-multi-date-picker";
 import Image from "next/image";
+import { AddLocation, Delete, Delete2, EditLocation } from "../../../icons";
 
 const CreateCards: NextPage = () => {
+  const mapCenter = {
+    lat: 35.7219,
+    lng: 51.3347,
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [position, setPosition] = useState<{
+    lat: number;
+    lng: number;
+  }>({
+    lat: 0,
+    lng: 0,
+  });
+
   const [images, setImages] = useState<
     {
       imageFile: File;
@@ -35,6 +51,7 @@ const CreateCards: NextPage = () => {
     address: string;
     date_description: string;
     date: DateValue;
+    images: string[] | null;
   }>({
     name: "",
     link: "",
@@ -43,6 +60,7 @@ const CreateCards: NextPage = () => {
     address: "",
     date_description: "",
     date: new Date(),
+    images: null,
   });
 
   const price = 290000;
@@ -64,6 +82,10 @@ const CreateCards: NextPage = () => {
   useEffect(() => {
     return () => images.forEach((image) => URL.revokeObjectURL(image.preview));
   }, []);
+
+  useEffect(() => {
+    console.log(position);
+  }, [position]);
 
   return (
     <>
@@ -149,7 +171,45 @@ const CreateCards: NextPage = () => {
                 setData({ ...data, address: event.target.value })
               }
             />
-            <MapWithNoSSR />
+
+            {position.lat !== 0 && position.lng !== 0 && (
+              <MapWithNoSSR
+                position={{ lat: position.lat, lng: position.lng }}
+              />
+            )}
+
+            {position.lat === 0 && position.lng === 0 && (
+              <span
+                className="map-action"
+                onClick={() => {
+                  setIsModalOpen(!isModalOpen);
+                  setPosition(mapCenter);
+                }}
+              >
+                <AddLocation />
+                انتخاب موقعیت مکانی بر روی نقشه
+              </span>
+            )}
+
+            {position.lat !== 0 && position.lng !== 0 && (
+              <span
+                className="map-action"
+                onClick={() => setIsModalOpen(!isModalOpen)}
+              >
+                <EditLocation />
+                ویرایش موقعیت مکانی
+              </span>
+            )}
+
+            {position.lat !== 0 && position.lng !== 0 && (
+              <span
+                className="map-action"
+                onClick={() => setPosition({ lat: 0, lng: 0 })}
+              >
+                <Delete2 />
+                حذف موقعیت مکانی
+              </span>
+            )}
           </div>
           <div className="create-page__col">
             <InputGroup guide="مثلا: دوشنبه ساعت ۱۱ به صرف چایی و شیرینی میبینمتون.">
@@ -183,6 +243,13 @@ const CreateCards: NextPage = () => {
           </div>
         </div>
       </main>
+
+      <MapModal
+        position={position}
+        setPosition={setPosition}
+        isOpen={isModalOpen}
+        toggleModal={() => setIsModalOpen(!isModalOpen)}
+      />
     </>
   );
 };

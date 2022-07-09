@@ -2,5 +2,101 @@
 @import "leaflet-geosearch/assets/css/leaflet.css";
 
 .map {
-  @apply border border-black border-opacity-20 rounded-lg h-80 w-full;
+  @apply border border-black border-opacity-20 rounded-lg w-full;
+}
+
+.map-action {
+  @apply flex items-center gap-1 -mt-4;
+  @apply font-normal text-lg opacity-90;
+  @apply cursor-pointer;
+
+  &:hover {
+    svg {
+      @apply animate-bounce;
+    }
+  }
+}
+
+.map-modal {
+  @apply rounded-none shadow-none max-w-none w-screen h-screen;
+  @apply flex flex-col;
+
+  &__header {
+    @apply bg-white p-5;
+    @apply flex items-center gap-8;
+    box-shadow: 0px 1px 0px #d4dbdd;
+    filter: drop-shadow(0px 1px 0px #d4dbdd);
+    @apply font-normal text-xl text-opacity-90;
+
+    svg {
+      @apply transition-all;
+      @apply hover:rotate-90;
+    }
+  }
+
+  &__body {
+    @apply grow relative;
+
+    &__submit {
+      @apply absolute bottom-4 left-4 right-4 lg:right-auto;
+      z-index: 500;
+    }
+  }
+}
+
+.leaflet-control-geosearch {
+  @apply font-kalameh font-normal text-lg;
+
+  form {
+    border: none !important;
+    @apply rounded-lg;
+
+    &::before {
+      content: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15.7138 6.8382C18.1647 9.28913 18.1647 13.2629 15.7138 15.7138C13.2629 18.1647 9.28913 18.1647 6.8382 15.7138C4.38727 13.2629 4.38727 9.28913 6.8382 6.8382C9.28913 4.38727 13.2629 4.38727 15.7138 6.8382' stroke='black' stroke-opacity='0.6' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M19 19L15.71 15.71' stroke='black' stroke-opacity='0.6' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+      @apply absolute right-3;
+      top: 9px;
+    }
+
+    input {
+      height: 40px !important;
+      @apply pr-6 text-lg;
+    }
+
+    .reset {
+      right: unset;
+      left: 6px;
+      top: 4px;
+
+      @apply text-4xl font-normal opacity-50 hover:bg-white;
+    }
+  }
+
+  .results {
+    &.active {
+      padding: 0;
+      border-top: none;
+      @apply text-right text-lg;
+
+      div {
+        border-top: 1px solid rgba(0, 0, 0, 0.12) !important;
+        @apply py-2;
+      }
+    }
+
+    & > :hover {
+      background-color: unset !important;
+      border-color: unset !important;
+    }
+
+    & > * {
+      border: unset;
+    }
+  }
+}
+
+.leaflet-bar-notfound {
+  @apply not-italic;
+  @apply py-2;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
 }

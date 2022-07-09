@@ -14,6 +14,9 @@ import WinkyIcon from "./winky-icon.svg";
 import Close from "./close.svg";
 import Calendar from "./calendar.svg";
 import Upload from "./upload.svg";
+import Delete2 from "./Delete2.svg";
+import EditLocation from "./edit-location.svg";
+import AddLocation from "./add-location.svg";
 
 export {
   Logo,
@@ -32,4 +35,7 @@ export {
   Close,
   Calendar,
   Upload,
+  Delete2,
+  EditLocation,
+  AddLocation,
 };

@@ -8,13 +8,21 @@ import {
 } from "react-leaflet";
 import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch";
 
-const Map: React.FC = () => {
-  const center = {
-    lat: 35.7219,
-    lng: 51.3347,
-  };
+import type { MapProps } from "./types";
 
-  const [position, setPosition] = useState(center);
+const Map: React.FC<MapProps> = ({
+  fullscreen = false,
+  draggableMarker = false,
+  activeSearch = false,
+  position,
+  setPosition,
+}) => {
+  // const mapCenter = {
+  //   lat: 35.7219,
+  //   lng: 51.3347,
+  // };
+
+  // const [position, setPosition] = useState(center);
 
   const DraggableMarker = () => {
     const markerRef = useRef(null);
@@ -25,7 +33,7 @@ const Map: React.FC = () => {
           const marker: any = markerRef.current;
 
           if (marker && marker !== null) {
-            setPosition(marker.getLatLng());
+            setPosition && setPosition(marker.getLatLng());
           }
         },
       }),
@@ -34,13 +42,13 @@ const Map: React.FC = () => {
 
     useMapEvents({
       click(event) {
-        setPosition(event.latlng);
+        setPosition && setPosition(event.latlng);
       },
     });
 
     return (
       <Marker
-        draggable
+        draggable={draggableMarker ? true : false}
         eventHandlers={eventHandlers}
         position={position}
         ref={markerRef}
@@ -55,8 +63,10 @@ const Map: React.FC = () => {
     useEffect(() => {
       const searchControl = GeoSearchControl({
         provider,
-        // style: "bar",
+        style: "bar",
         showMarker: false,
+        notFoundMessage: "با عرض پوزش، آدرس مورد نظر شما یافت نشد.",
+        searchLabel: "جستجو آدرس",
       });
 
       map.addControl(searchControl);
@@ -71,8 +81,8 @@ const Map: React.FC = () => {
 
   return (
     <MapContainer
-      className="map"
-      center={center}
+      className={`map ${fullscreen ? "h-full" : "h-36"}`}
+      center={position}
       zoom={15}
       scrollWheelZoom={true}
     >
@@ -81,7 +91,7 @@ const Map: React.FC = () => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <DraggableMarker />
-      <Search provider={new OpenStreetMapProvider()} />
+      {activeSearch && <Search provider={new OpenStreetMapProvider()} />}
     </MapContainer>
   );
 };

@@ -1,0 +1,16 @@
+.dialog {
+  @apply relative;
+  z-index: 1300;
+
+  &__bg {
+    @apply fixed inset-0 bg-black bg-opacity-50;
+  }
+
+  &__panel {
+    @apply w-full max-w-md transform overflow-hidden rounded-2xl bg-white align-middle shadow-xl transition-all;
+
+    &__title {
+      @apply text-lg font-medium leading-6 text-gray-900;
+    }
+  }
+}
