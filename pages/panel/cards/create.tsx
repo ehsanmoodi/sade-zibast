@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import dynamic from "next/dynamic";
 import { useCallback, useEffect, useState } from "react";
 import {
   Button,
@@ -10,6 +11,10 @@ import {
   InputGroup,
   TextArea,
 } from "../../../components";
+
+const MapWithNoSSR = dynamic(() => import("../../../components/Map"), {
+  ssr: false,
+});
 
 import type { Value as DateValue } from "react-multi-date-picker";
 import Image from "next/image";
@@ -144,6 +149,7 @@ const CreateCards: NextPage = () => {
                 setData({ ...data, address: event.target.value })
               }
             />
+            <MapWithNoSSR />
           </div>
           <div className="create-page__col">
             <InputGroup guide="مثلا: دوشنبه ساعت ۱۱ به صرف چایی و شیرینی میبینمتون.">

@@ -1,0 +1,6 @@
+@import "leaflet/dist/leaflet.css";
+@import "leaflet-geosearch/assets/css/leaflet.css";
+
+.map {
+  @apply border border-black border-opacity-20 rounded-lg h-80 w-full;
+}
