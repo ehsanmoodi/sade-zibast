@@ -82,8 +82,16 @@ const Login: NextPage = () => {
         mutateToken(await fetchJson("/api/login", initPostRequest(body)));
       } catch (error) {
         setProcessing(false);
-        toast.error(errors.general);
-        console.log(error);
+
+        if (
+          error instanceof FetchError &&
+          error.data.message === "Data Validation Failed."
+        ) {
+          toast.error(errors.invalidCode);
+        } else {
+          toast.error(errors.general);
+          console.error("An unexpected error happened:", error);
+        }
       }
     }
   };
