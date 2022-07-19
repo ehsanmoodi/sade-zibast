@@ -2,5 +2,5 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   mode?: string;
   children: JSX.Element | string;
-  classes?: string;
+  classes?: string | JSX.Element;
 }

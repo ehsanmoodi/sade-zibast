@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import { InvitationCard, NewInvitationCard } from "../../../components";
 import { InvitationCardProps } from "../../../components/InvitationCard/types";
+import useToken from "../../../lib/useToken";
 import { PanelTemplate } from "../../../templates";
 
 interface CardsPageProps {

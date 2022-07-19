@@ -17,6 +17,7 @@ import Upload from "./upload.svg";
 import Delete2 from "./delete2.svg";
 import EditLocation from "./edit-location.svg";
 import AddLocation from "./add-location.svg";
+import Loader from "./loader.svg";
 
 export {
   Logo,
@@ -38,4 +39,5 @@ export {
   Delete2,
   EditLocation,
   AddLocation,
+  Loader,
 };

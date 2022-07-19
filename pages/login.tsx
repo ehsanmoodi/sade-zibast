@@ -1,19 +1,91 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { Button, InnerHeader, Input } from "../components";
-import { Edit } from "../icons";
-import { formatSeconds } from "../utils/formatSeconds";
+import { Edit, Loader } from "../icons";
+import fetchJson, { FetchError, initPostRequest } from "../lib/fetchJson";
+import { endPoints } from "../utils/endpoints";
+import { formatSeconds } from "../utils/time";
+
+import { validateMobile } from "../utils/validator";
+import useToken from "../lib/useToken";
+import { errors } from "../utils/errors";
 
 const Login: NextPage = () => {
-  const [enterMobileStep, setEnterMobileStep] = useState<boolean>(true);
-  const [mobile, setMobile] = useState<number>();
-  const [verificationCode, setVerificationCode] = useState<number>();
-  const [time, setTime] = useState<number>(0);
+  const { mutateToken } = useToken({
+    redirectTo: "/panel/cards",
+    redirectIfFound: true,
+  });
 
-  const sendCode = () => {
-    setEnterMobileStep(false);
-    setTime(10);
+  const [enterMobileStep, setEnterMobileStep] = useState<boolean>(true);
+  const [mobile, setMobile] = useState<string>("");
+  const [token, setToken] = useState<string>("");
+  const [verificationCode, setVerificationCode] = useState<string>("");
+  const [time, setTime] = useState<number>(0);
+  const [processing, setProcessing] = useState<boolean>(false);
+
+  const sendCode = async () => {
+    setProcessing(true);
+
+    if (!validateMobile(mobile)) {
+      toast.error(errors.invalidMobile);
+      setProcessing(false);
+      return;
+    }
+
+    try {
+      const response: any = await fetchJson(
+        endPoints.authSendCode,
+        initPostRequest({ mobile })
+      );
+
+      setProcessing(false);
+      setEnterMobileStep(false);
+      setTime(90);
+      setToken(response.data.token);
+    } catch (error) {
+      setProcessing(false);
+      toast.error(errors.general);
+      console.log(error);
+    }
+  };
+
+  const resendCode = async () => {
+    setProcessing(true);
+    setVerificationCode("");
+
+    try {
+      const response: any = await fetchJson(
+        endPoints.authResendCode,
+        initPostRequest({ token })
+      );
+
+      setProcessing(false);
+      setTime(90);
+    } catch (error) {
+      setProcessing(false);
+      console.log(error);
+    }
+  };
+
+  const verifyCode = async () => {
+    if (verificationCode.length === 4 || verificationCode.length >= 4) {
+      setProcessing(true);
+
+      const body = {
+        token,
+        code: verificationCode,
+      };
+
+      try {
+        mutateToken(await fetchJson("/api/login", initPostRequest(body)));
+      } catch (error) {
+        setProcessing(false);
+        toast.error(errors.general);
+        console.log(error);
+      }
+    }
   };
 
   useEffect(() => {
@@ -27,6 +99,10 @@ const Login: NextPage = () => {
 
     return () => clearInterval(timer);
   }, [time]);
+
+  useEffect(() => {
+    verifyCode();
+  }, [verificationCode]);
 
   return (
     <>
@@ -48,13 +124,20 @@ const Login: NextPage = () => {
                 لطفا جهت دریافت کد فعالسازی شماره موبایل خود را وارد کنید
               </p>
               <Input
+                disabled={processing}
                 id="mobile"
-                type="number"
+                type="text"
                 label="شماره موبایل"
                 value={mobile}
-                onChange={(event) => setMobile(Number(event.target.value))}
+                onChange={(event) => setMobile(event.target.value)}
               />
-              <Button onClick={sendCode}>دریافت کد فعالسازی</Button>
+              <Button onClick={sendCode} disabled={processing}>
+                {processing ? (
+                  <Loader className="animate-spin" />
+                ) : (
+                  "دریافت کد فعالسازی"
+                )}
+              </Button>
             </div>
           )}
 
@@ -66,40 +149,43 @@ const Login: NextPage = () => {
               </p>
               <button
                 onClick={() => {
-                  if (time === 0) {
-                    setEnterMobileStep(true);
-                  }
+                  setEnterMobileStep(true);
                 }}
                 className="login-page__edit-number"
               >
                 <Edit />
-                09902684169
+                {mobile}
               </button>
               <Input
+                disabled={processing}
                 id="verificationCode"
                 type="number"
                 label="کد ورود"
                 value={verificationCode}
-                onChange={(event) =>
-                  setVerificationCode(Number(event.target.value))
-                }
+                onChange={(event) => setVerificationCode(event.target.value)}
               />
-              {time !== 0 && (
-                <span className="login-page__timer">
-                  {formatSeconds(time)} تا درخواست مجدد کد
-                </span>
-              )}
-              {time === 0 && (
-                <a
-                  href=""
-                  onClick={(event) => {
-                    event.preventDefault();
-                    sendCode();
-                  }}
-                  className="login-page__request-again"
-                >
-                  درخواست کد فعالسازی مجدد
-                </a>
+              {processing ? (
+                <Loader className="loader loader--sea-green" />
+              ) : (
+                <>
+                  {time !== 0 && (
+                    <span className="login-page__timer">
+                      {formatSeconds(time)} تا درخواست مجدد کد
+                    </span>
+                  )}
+                  {time === 0 && (
+                    <a
+                      href=""
+                      onClick={(event) => {
+                        event.preventDefault();
+                        resendCode();
+                      }}
+                      className="login-page__request-again"
+                    >
+                      درخواست کد فعالسازی مجدد
+                    </a>
+                  )}
+                </>
               )}
             </div>
           )}

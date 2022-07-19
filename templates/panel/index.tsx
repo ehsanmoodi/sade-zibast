@@ -12,6 +12,8 @@ import {
   LogoLinear,
   SingleUser,
 } from "../../icons";
+import fetchJson, { initPostRequest } from "../../lib/fetchJson";
+import useToken from "../../lib/useToken";
 
 interface Props {
   metaTitle: string;
@@ -52,6 +54,10 @@ const PanelTemplate: React.FC<Props> = ({
   title,
   children,
 }) => {
+  const { token, mutateToken } = useToken({
+    redirectTo: "/login",
+  });
+
   const router = useRouter();
   const [isActive, setIsActive] = useState<boolean>(false);
 
@@ -67,46 +73,65 @@ const PanelTemplate: React.FC<Props> = ({
       </Head>
 
       <main className="panel">
-        <div className="panel__menu">
-          <ToggleIcon onClick={toggleMenu} isActive={isActive} />
+        {token && (
+          <>
+            <div className="panel__menu">
+              <ToggleIcon onClick={toggleMenu} isActive={isActive} />
 
-          <Link href="/">
-            <a className="panel__menu__logo">
-              <LogoLinear />
-            </a>
-          </Link>
+              <Link href="/">
+                <a className="panel__menu__logo">
+                  <LogoLinear />
+                </a>
+              </Link>
 
-          <div className="panel__menu__account">
-            <AccountCircle />
-          </div>
+              <div className="panel__menu__account">
+                <AccountCircle />
+              </div>
 
-          <ul className={`panel__menu__items ${isActive && "open"}`}>
-            {menuItems.map((item) => (
-              <li key={item.key}>
-                <Link href={item.href}>
-                  <a className={router.pathname === item.href ? "active" : ""}>
-                    {item.icon}
-                    {item.label}
+              <ul className={`panel__menu__items ${isActive && "open"}`}>
+                {menuItems.map((item) => (
+                  <li key={item.key}>
+                    <Link href={item.href}>
+                      <a
+                        className={
+                          router.pathname === item.href ? "active" : ""
+                        }
+                      >
+                        {item.icon}
+                        {item.label}
+                      </a>
+                    </Link>
+                  </li>
+                ))}
+                <li className="desktop-logout">
+                  <a
+                    href=""
+                    onClick={async (event) => {
+                      event.preventDefault();
+                      mutateToken(
+                        await fetchJson("/api/logout", initPostRequest()),
+                        false
+                      );
+
+                      router.push("/");
+                    }}
+                  >
+                    <Exit />
+                    خروچ از حساب
                   </a>
-                </Link>
-              </li>
-            ))}
-            <li className="desktop-logout">
-              <a href="">
-                <Exit />
-                خروچ از حساب
-              </a>
-            </li>
-          </ul>
-          <span className="panel__menu__text">
-            ساخته شده با
-            <Heart />
-          </span>
-        </div>
-        <div className="panel__body">
-          <h1 className="panel__body__title">{title}</h1>
-          <div className="panel__body__content">{children}</div>
-        </div>
+                </li>
+              </ul>
+              <span className="panel__menu__text">
+                ساخته شده با
+                <Heart />
+              </span>
+            </div>
+            <div className="panel__body">
+              <h1 className="panel__body__title">{title}</h1>
+              <div className="panel__body__content">{children}</div>
+            </div>
+          </>
+        )}
       </main>
     </>
   );

@@ -2,12 +2,12 @@
   @apply py-10 px-6 lg:p-16;
   @apply grid grid-cols-12 justify-center items-center;
 
-  div {
+  & > div {
     @apply col-span-12 lg:col-span-4 lg:col-start-5;
     @apply flex flex-col gap-10;
 
     .input {
-      @apply bg-white;
+      @apply bg-white text-start;
     }
 
     button {

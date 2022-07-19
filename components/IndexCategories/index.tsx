@@ -65,7 +65,7 @@ const IndexCategories = () => {
         ))}
       </div>
       <div className="index-categories__action">
-        <ButtonLink text="همین الان بساز" href="/panel/new" />
+        <ButtonLink text="همین الان بساز" href="/panel/cards/create" />
       </div>
     </IndexSection>
   );

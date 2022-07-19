@@ -8,5 +8,11 @@
     @apply bg-sea-green text-white;
     @apply transition-all;
     @apply hover:bg-transparent hover:text-sea-green;
+
+    &:hover {
+      svg path {
+        @apply fill-sea-green;
+      }
+    }
   }
 }

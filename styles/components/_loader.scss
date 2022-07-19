@@ -1,0 +1,9 @@
+.loader {
+  @apply animate-spin mx-auto;
+
+  &--sea-green {
+    path {
+      @apply fill-sea-green;
+    }
+  }
+}

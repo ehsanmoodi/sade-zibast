@@ -13,7 +13,7 @@ const IndexHero = () => {
         <WinkyIcon />
       </p>
       <div className="index-hero__action">
-        <ButtonLink text="همین الان بساز" href="/panel/new" />
+        <ButtonLink text="همین الان بساز" href="/panel/cards/create" />
       </div>
     </section>
   );
