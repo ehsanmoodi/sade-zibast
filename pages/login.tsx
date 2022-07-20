@@ -139,12 +139,12 @@ const Login: NextPage = () => {
                 value={mobile}
                 onChange={(event) => setMobile(event.target.value)}
               />
-              <Button onClick={sendCode} disabled={processing}>
-                {processing ? (
-                  <Loader className="animate-spin" />
-                ) : (
-                  "دریافت کد فعالسازی"
-                )}
+              <Button
+                onClick={sendCode}
+                disabled={processing}
+                processing={processing}
+              >
+                دریافت کد فعالسازی
               </Button>
             </div>
           )}

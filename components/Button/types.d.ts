@@ -3,4 +3,5 @@ export interface ButtonProps
   mode?: string;
   children: JSX.Element | string;
   classes?: string | JSX.Element;
+  processing?: boolean;
 }

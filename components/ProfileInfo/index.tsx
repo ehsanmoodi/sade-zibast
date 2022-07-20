@@ -96,8 +96,8 @@ const ProfileInfo: React.FC = () => {
         ))}
       </div>
       <div className="profile-info__actions">
-        <Button onClick={updateProfile}>
-          {processing ? <Loader className="loader" /> : "ثبت"}
+        <Button onClick={updateProfile} processing={processing}>
+          ثبت
         </Button>
       </div>
     </div>
