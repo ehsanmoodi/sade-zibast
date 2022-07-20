@@ -17,4 +17,11 @@
       }
     }
   }
+
+  &--black {
+    @apply border border-mine-shaft;
+    @apply bg-mine-shaft text-white;
+    @apply transition-all;
+    @apply hover:bg-transparent hover:text-mine-shaft;
+  }
 }

@@ -22,3 +22,4 @@ export { default as DateInput } from "./DateInput";
 export { default as Dropzone } from "./Dropzone";
 export { default as MapModal } from "./MapModal";
 export { default as ProfileInfo } from "./ProfileInfo";
+export { default as InviteCardSlider } from "./InviteCardSlider";

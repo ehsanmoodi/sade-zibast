@@ -15,6 +15,7 @@ module.exports = {
         alto: "#D5D5D5",
         "baltic-sea": "#1C1B1F",
         geyser: "#D1D9DD",
+        "mine-shaft": "#212121",
       },
       keyframes: {
         "bounce-horizontal": {

@@ -3,5 +3,5 @@ export interface IndexSlideProps {
     src: string;
     alt?: string;
   };
-  link: string;
+  link?: string;
 }

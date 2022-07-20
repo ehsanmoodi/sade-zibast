@@ -56,15 +56,14 @@ const Login: NextPage = () => {
     setVerificationCode("");
 
     try {
-      const response: any = await fetchJson(
-        endPoints.authResendCode,
-        initPostRequest({ token })
-      );
+      await fetchJson(endPoints.authResendCode, initPostRequest({ token }));
 
       setProcessing(false);
       setTime(90);
+      toast.success(messages.successResendCode);
     } catch (error) {
       setProcessing(false);
+      toast.error(messages.generalError);
       console.log(error);
     }
   };
