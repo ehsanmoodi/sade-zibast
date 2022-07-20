@@ -5,7 +5,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import fetchJson, { initPostRequest } from "../../lib/fetchJson";
 import { sessionOptions } from "../../lib/session";
 import { endPoints } from "../../utils/endpoints";
-import { Token } from "../../lib/types";
+import { messages } from "../../utils/messages";
 
 export default withIronSessionApiRoute(loginRoute, sessionOptions);
 
@@ -30,7 +30,7 @@ async function loginRoute(req: NextApiRequest, res: NextApiResponse) {
     await req.session.save();
 
     res.json({
-      message: "Login was succussful",
+      message: messages.successfulLogin,
     });
   } catch (error) {
     res.status(500).json({

@@ -10,7 +10,7 @@ import { formatSeconds } from "../utils/time";
 
 import { validateMobile } from "../utils/validator";
 import useToken from "../lib/useToken";
-import { errors } from "../utils/errors";
+import { messages } from "../utils/messages";
 
 const Login: NextPage = () => {
   const { mutateToken } = useToken({
@@ -29,7 +29,7 @@ const Login: NextPage = () => {
     setProcessing(true);
 
     if (!validateMobile(mobile)) {
-      toast.error(errors.invalidMobile);
+      toast.error(messages.invalidMobileError);
       setProcessing(false);
       return;
     }
@@ -46,7 +46,7 @@ const Login: NextPage = () => {
       setToken(response.data.token);
     } catch (error) {
       setProcessing(false);
-      toast.error(errors.general);
+      toast.error(messages.generalError);
       console.log(error);
     }
   };
@@ -87,9 +87,9 @@ const Login: NextPage = () => {
           error instanceof FetchError &&
           error.data.message === "Data Validation Failed."
         ) {
-          toast.error(errors.invalidCode);
+          toast.error(messages.invalidCodeError);
         } else {
-          toast.error(errors.general);
+          toast.error(messages.generalError);
           console.error("An unexpected error happened:", error);
         }
       }

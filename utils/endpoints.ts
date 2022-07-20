@@ -3,7 +3,10 @@ export const url = (path: string) => {
 };
 
 export const endPoints = {
+  // Auth
   authSendCode: url("auth"),
   authResendCode: url("auth/resend"),
   authVerifyCode: url("auth/verify"),
+  // Profile
+  profileInfo: url("identity"),
 };

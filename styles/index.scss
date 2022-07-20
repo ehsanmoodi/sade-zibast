@@ -26,6 +26,7 @@
 @import "./components/map";
 @import "./components/toast";
 @import "./components/loader";
+@import "./components/profile_info";
 
 // layout
 @import "./layout/main_header";
@@ -42,7 +43,6 @@
 
 // pages
 @import "./pages/payments";
-@import "./pages/profile";
 @import "./pages/cards";
 @import "./pages/create";
 @import "./pages/login";

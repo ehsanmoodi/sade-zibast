@@ -2,8 +2,6 @@
 
 .Toastify {
   &__toast {
-    // @apply font-kalameh;
-    // font-family: "kalameh" !important;
     --toastify-font-family: kalameh;
     @apply font-normal text-xl;
     @apply rounded-lg;

@@ -21,3 +21,4 @@ export { default as InputGroup } from "./InputGroup";
 export { default as DateInput } from "./DateInput";
 export { default as Dropzone } from "./Dropzone";
 export { default as MapModal } from "./MapModal";
+export { default as ProfileInfo } from "./ProfileInfo";

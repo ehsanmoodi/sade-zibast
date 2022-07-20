@@ -17,22 +17,27 @@ export default async function fetchJson<JSON = unknown>(
   });
 }
 
-export const initPostRequest = (body: object = {}) => {
+export const initPostRequest = (
+  body: object = {},
+  authorization: object = {}
+) => {
   return {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      ...authorization,
     },
     body: JSON.stringify(body),
   };
 };
 
-export const initGetRequest = () => {
+export const initGetRequest = (authorization: object = {}) => {
   return {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      ...authorization,
     },
   };
 };
