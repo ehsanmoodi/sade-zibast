@@ -4,9 +4,11 @@ export const url = (path: string) => {
 
 export const endPoints = {
   // Auth
-  authSendCode: url("auth"),
-  authResendCode: url("auth/resend"),
-  authVerifyCode: url("auth/verify"),
+  authSendCode: url("auth"), // POST
+  authResendCode: url("auth/resend"), // POST
+  authVerifyCode: url("auth/verify"), // POST
   // Profile
-  profileInfo: url("identity"),
+  profileInfo: url("identity"), // GET, POST
+  // Files
+  uploadFiles: url("files"), // POST
 };
