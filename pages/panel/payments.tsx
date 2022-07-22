@@ -33,22 +33,22 @@ const Payments: NextPage<PaymentPageProps> = ({ data }) => {
 
 export const getServerSideProps = () => {
   const payments: PaymentCardProps[] = [
-    {
-      id: 1,
-      date: "۲۹ اردیبهشت ۱۴۰۱",
-      price: "۲۹۰.۰۰۰ تومان",
-      trackingCode: "۲۲۳۲۳۴۲۲۲۳۴",
-      gateway: "بانک سامان",
-      discount: "-",
-    },
-    {
-      id: 2,
-      date: "۲۸ اردیبهشت ۱۴۰۱",
-      price: "۲۹۰.۰۰۰ تومان",
-      trackingCode: "۲۲۳۲۳۴۲۲۲۳۴",
-      gateway: "بانک سامان",
-      discount: "-",
-    },
+    // {
+    //   id: 1,
+    //   date: "۲۹ اردیبهشت ۱۴۰۱",
+    //   price: "۲۹۰.۰۰۰ تومان",
+    //   trackingCode: "۲۲۳۲۳۴۲۲۲۳۴",
+    //   gateway: "بانک سامان",
+    //   discount: "-",
+    // },
+    // {
+    //   id: 2,
+    //   date: "۲۸ اردیبهشت ۱۴۰۱",
+    //   price: "۲۹۰.۰۰۰ تومان",
+    //   trackingCode: "۲۲۳۲۳۴۲۲۲۳۴",
+    //   gateway: "بانک سامان",
+    //   discount: "-",
+    // },
   ];
 
   return {

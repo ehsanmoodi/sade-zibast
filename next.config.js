@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["picsum.photos"],
+    domains: ["picsum.photos", "api.sadezibast.ir"],
   },
   i18n: {
     locales: ["fa-IR"],

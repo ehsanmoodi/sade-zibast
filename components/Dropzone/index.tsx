@@ -9,6 +9,7 @@ const Dropzone: React.FC<DropzoneProps> = ({ onDrop }) => {
       "image/*": [],
     },
     onDrop,
+    multiple: false,
   });
 
   return (

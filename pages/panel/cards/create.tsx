@@ -19,7 +19,7 @@ const MapWithNoSSR = dynamic(() => import("../../../components/Map"), {
 
 import type { Value as DateValue } from "react-multi-date-picker";
 import Image from "next/image";
-import { AddLocation, Delete2, EditLocation } from "../../../icons";
+import { AddLocation, Delete2, EditLocation, Loader } from "../../../icons";
 import fetchJson, { initPostRequest } from "../../../lib/fetchJson";
 import { toast } from "react-toastify";
 import { messages } from "../../../utils/messages";
@@ -47,13 +47,6 @@ const CreateCards: NextPage<
     lng: 0,
   });
 
-  const [images, setImages] = useState<
-    {
-      imageFile: File;
-      preview: any;
-    }[]
-  >([]);
-
   const [data, setData] = useState<{
     name: string;
     slug: string;
@@ -62,7 +55,10 @@ const CreateCards: NextPage<
     address: string;
     date_description: string;
     date: DateValue;
-    images: string[];
+    images: {
+      name: string;
+      url: string;
+    }[];
   }>({
     name: "",
     slug: "",
@@ -75,50 +71,45 @@ const CreateCards: NextPage<
   });
 
   const [processing, setProcessing] = useState<boolean>(false);
+  const [uploading, setUploading] = useState<boolean>(false);
 
   const price = 290000;
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    acceptedFiles.map(async (file) => {
+    setUploading(true);
+
+    acceptedFiles.forEach(async (file) => {
       try {
         const formData = new FormData();
         formData.append("file", file);
 
-        const response: any = await fetchJson(
+        let response: any = await fetchJson(
           endPoints.uploadFiles + "?is_image=1",
           {
             method: "POST",
-            body: formData,
             headers: {
-              "Content-Type": "multipart/form-data",
               Authorization: `Bearer ${token}`,
             },
+            body: formData,
           }
         );
 
-        // Preview image
-        setImages((prevImages) => [
-          ...prevImages,
-          {
-            imageFile: file,
-            preview: URL.createObjectURL(file),
-          },
-        ]);
-
         // Add uploaded image name to data
-        setData({ ...data, images: [...data.images, response.data.name] });
+        setData({
+          ...data,
+          images: [
+            ...data.images,
+            { name: response.data.name, url: response.data.url },
+          ],
+        });
         toast.success(messages.successUploadImage);
+        setUploading(false);
       } catch (error) {
         toast.error(messages.failedUploadImage);
+        setUploading(false);
         console.log(error);
       }
-
-      return file;
     });
-  }, []);
-
-  useEffect(() => {
-    return () => images.forEach((image) => URL.revokeObjectURL(image.preview));
   }, []);
 
   const createCard = async () => {
@@ -144,7 +135,7 @@ const CreateCards: NextPage<
             address: data.address,
             latitude: position.lat,
             longitude: position.lng,
-            images: data.images,
+            images: data.images.map((item) => item.name),
           },
           {
             Authorization: `Bearer ${token}`,
@@ -213,17 +204,22 @@ const CreateCards: NextPage<
             <InputGroup title="گالری تصاویر">
               <Dropzone onDrop={onDrop} />
               <div className="thumbs">
-                {images.map((image, index) => (
+                {data.images.map((image, index) => (
                   <div key={index}>
                     <Image
-                      src={image.preview}
-                      alt={image.imageFile.name}
+                      src={image.url}
+                      alt={image.name}
                       layout="fill"
                       objectFit="contain"
                       objectPosition="center"
                     />
                   </div>
                 ))}
+                {uploading && (
+                  <div className="uploading">
+                    <Loader className="loader loader--sea-green" />
+                  </div>
+                )}
               </div>
             </InputGroup>
           </div>

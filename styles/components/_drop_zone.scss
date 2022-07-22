@@ -22,5 +22,9 @@
     img {
       @apply rounded-lg;
     }
+
+    &.uploading {
+      @apply flex items-center justify-center;
+    }
   }
 }
