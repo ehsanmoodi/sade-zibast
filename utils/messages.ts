@@ -7,4 +7,9 @@ export const messages = {
   successProfileUpdate: "اطلاعات شما با موفقیت بروزرسانی شد.",
   failedUploadImage: "خطایی در آپلود عکس رخ داد.",
   successUploadImage: "عکس با موفقیت آپلود شد.",
+  failedCreateCard: "ایجاد کارت دعوت با خطا مواجه شد.",
+  successCreateCard: "کارت دعوت شما با موفقیت ایجاد شد.",
+  requiredCardNameDate: "نام و تاریخ کارت الزامی است.",
+  successUpdateCard: "کارت دعوت شما با موفقیت بروزرسانی شد.",
+  failedUpdateCard: "بروزرسانی کارت دعوت با خطا مواجه شد.",
 };

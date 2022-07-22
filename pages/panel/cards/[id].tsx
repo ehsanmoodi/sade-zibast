@@ -20,7 +20,10 @@ const MapWithNoSSR = dynamic(() => import("../../../components/Map"), {
 import type { Value as DateValue } from "react-multi-date-picker";
 import Image from "next/image";
 import { AddLocation, Delete2, EditLocation } from "../../../icons";
-import fetchJson, { initPostRequest } from "../../../lib/fetchJson";
+import fetchJson, {
+  initGetRequest,
+  initPostRequest,
+} from "../../../lib/fetchJson";
 import { toast } from "react-toastify";
 import { messages } from "../../../utils/messages";
 import { endPoints } from "../../../utils/endpoints";
@@ -28,9 +31,11 @@ import { withIronSessionSsr } from "iron-session/next";
 import { sessionOptions } from "../../../lib/session";
 import { useRouter } from "next/router";
 
+import type { CardDetail } from "./types";
+
 const CreateCards: NextPage<
   InferGetServerSidePropsType<typeof getServerSideProps>
-> = ({ token }) => {
+> = ({ token, id, cardDetail: CardDetail }) => {
   const router = useRouter();
 
   const mapCenter = {
@@ -64,19 +69,17 @@ const CreateCards: NextPage<
     date: DateValue;
     images: string[];
   }>({
-    name: "",
-    slug: "",
-    description: "",
-    description_second: "",
-    address: "",
-    date_description: "",
-    date: new Date(),
+    name: CardDetail.name,
+    slug: CardDetail.slug,
+    description: CardDetail.description,
+    description_second: CardDetail.description_second,
+    address: CardDetail.address,
+    date_description: CardDetail.date_description,
+    date: CardDetail.date,
     images: [],
   });
 
   const [processing, setProcessing] = useState<boolean>(false);
-
-  const price = 290000;
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     acceptedFiles.map(async (file) => {
@@ -121,7 +124,7 @@ const CreateCards: NextPage<
     return () => images.forEach((image) => URL.revokeObjectURL(image.preview));
   }, []);
 
-  const createCard = async () => {
+  const updateCard = async () => {
     setProcessing(true);
 
     if (data.name === "" || data.date === "") {
@@ -131,32 +134,32 @@ const CreateCards: NextPage<
     }
 
     try {
-      await fetchJson(
-        endPoints.cards,
-        initPostRequest(
-          {
-            name: data.name,
-            date: data.date,
-            slug: data.slug,
-            date_description: data.date_description,
-            description: data.description,
-            description_second: data.description_second,
-            address: data.address,
-            latitude: position.lat,
-            longitude: position.lng,
-            images: data.images,
-          },
-          {
-            Authorization: `Bearer ${token}`,
-          }
-        )
-      );
+      await fetchJson(endPoints.cards + "/" + id, {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          name: data.name,
+          date: data.date,
+          slug: data.slug,
+          date_description: data.date_description,
+          description: data.description,
+          description_second: data.description_second,
+          address: data.address,
+          latitude: position.lat,
+          longitude: position.lng,
+          images: data.images,
+        }),
+      });
 
       setProcessing(false);
       router.push("/panel/cards");
-      toast.success(messages.successCreateCard);
+      toast.success(messages.successUpdateCard);
     } catch (error) {
-      toast.error(messages.failedCreateCard);
+      toast.error(messages.failedUpdateCard);
       setProcessing(false);
       console.log(error);
     }
@@ -165,15 +168,18 @@ const CreateCards: NextPage<
   return (
     <>
       <Head>
-        <title>ساخت کارت جدید</title>
+        <title>{`ویرایش ${CardDetail.name}`}</title>
         <meta
           name="description"
-          content="در این صفحه از پنل کاربری می‌توانید کارت جدیدی ایجاد کنید"
+          content="در این صفحه از پنل کاربری می‌توانید کارت دعوت خود را ویرایش کنید"
         />
       </Head>
 
       <main className="min-h-screen bg-vista-white">
-        <InnerHeader title="ایجاد کارت دعوت جدید" backLink="/panel/cards" />
+        <InnerHeader
+          title={`ویرایش ${CardDetail.name}`}
+          backLink="/panel/cards"
+        />
 
         <div className="create-page">
           <div className="create-page__col">
@@ -247,7 +253,7 @@ const CreateCards: NextPage<
               }
             />
 
-            {position.lat !== 0 && position.lng !== 0 && (
+            {/* {position.lat !== 0 && position.lng !== 0 && (
               <MapWithNoSSR
                 position={{ lat: position.lat, lng: position.lng }}
               />
@@ -284,7 +290,7 @@ const CreateCards: NextPage<
                 <Delete2 />
                 حذف موقعیت مکانی
               </span>
-            )}
+            )} */}
           </div>
           <div className="create-page__col">
             <InputGroup guide="مثلا: دوشنبه ساعت ۱۱ به صرف چایی و شیرینی میبینمتون.">
@@ -309,26 +315,19 @@ const CreateCards: NextPage<
                 }
               />
             </InputGroup>
-            <div className="create-page__invoice">
-              <div className="create-page__invoice__title">فاکتور</div>
-              <div className="create-page__invoice__pricing">
-                <span>تعرفه کارت دعوت</span>
-                <span>{price} تومان</span>
-              </div>
-            </div>
-            <Button onClick={createCard} processing={processing}>
-              پرداخت
+            <Button onClick={updateCard} processing={processing}>
+              بروزرسانی
             </Button>
           </div>
         </div>
       </main>
 
-      <MapModal
+      {/* <MapModal
         position={position}
         setPosition={setPosition}
         isOpen={isModalOpen}
         toggleModal={() => setIsModalOpen(!isModalOpen)}
-      />
+      /> */}
     </>
   );
 };
@@ -336,8 +335,10 @@ const CreateCards: NextPage<
 export default CreateCards;
 
 export const getServerSideProps = withIronSessionSsr(
-  async function getServerSideProps({ req, res }) {
+  async function getServerSideProps({ req, res, query }) {
     const sessionToken = req.session.token?.token;
+    const id: string = query ? (query.id as string) : "";
+    let response: any;
 
     if (sessionToken === undefined) {
       res.setHeader("Location", "/login");
@@ -347,15 +348,63 @@ export const getServerSideProps = withIronSessionSsr(
       return {
         props: {
           token: "",
+          id: "",
+          cardDetail: EmptyCardDetail,
         },
       };
     }
 
+    // try {
+    response = await fetchJson(
+      endPoints.cards + "/" + id,
+      initGetRequest({ Authorization: `Bearer ${sessionToken}` })
+    );
+    // } catch (error) {
+    //   return {
+    //     notFound: true,
+    //   };
+    // }
+
     return {
       props: {
         token: sessionToken,
+        id,
+        cardDetail: response.data,
       },
     };
   },
   sessionOptions
 );
+
+const EmptyCardDetail = {
+  name: "",
+  date: new Date(),
+  date_description: "",
+  description: "",
+  description_second: "",
+  address: "",
+  images: [
+    {
+      name: "",
+      url: "",
+    },
+  ],
+  slug: "",
+  created_at: {
+    jalali: new Date(),
+    gregorian: new Date(),
+    timestamp: 0,
+    tz: "",
+  },
+  updated_at: {
+    jalali: new Date(),
+    gregorian: new Date(),
+    timestamp: 0,
+    tz: "",
+  },
+  price: -1,
+  paid: false,
+  status: 4, // 1=pending, 2=approved, 3=disabled, 4=rejected
+  id: "",
+  expired: true,
+};

@@ -18,7 +18,7 @@ export default async function fetchJson<JSON = unknown>(
 }
 
 export const initPostRequest = (
-  body: object = {},
+  body: object | FormData = {},
   authorization: object = {}
 ) => {
   return {
@@ -28,7 +28,7 @@ export const initPostRequest = (
       "Content-Type": "application/json",
       ...authorization,
     },
-    body: JSON.stringify(body),
+    body: typeof body === "object" ? JSON.stringify(body) : body,
   };
 };
 

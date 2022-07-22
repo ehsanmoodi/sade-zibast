@@ -1,14 +1,17 @@
+import { withIronSessionSsr } from "iron-session/next";
 import type { NextPage } from "next";
+
 import { InvitationCard, NewInvitationCard } from "../../../components";
-import { InvitationCardProps } from "../../../components/InvitationCard/types";
-import useToken from "../../../lib/useToken";
+import fetchJson, { initGetRequest } from "../../../lib/fetchJson";
+import { sessionOptions } from "../../../lib/session";
 import { PanelTemplate } from "../../../templates";
+import { endPoints } from "../../../utils/endpoints";
 
-interface CardsPageProps {
-  data: InvitationCardProps[];
-}
+import type { CardsList } from "./types";
 
-const Cards: NextPage<CardsPageProps> = ({ data }) => {
+const Cards: NextPage<{ token: string; serverResponse: CardsList }> = ({
+  serverResponse,
+}) => {
   return (
     <PanelTemplate
       title="کارت‌های دعوت"
@@ -17,13 +20,13 @@ const Cards: NextPage<CardsPageProps> = ({ data }) => {
     >
       <div className="cards">
         <NewInvitationCard />
-        {data.map((item) => (
+        {serverResponse.data.items.map((item) => (
           <InvitationCard
             key={item.id}
             id={item.id}
-            title={item.title}
-            link={item.link}
-            active={item.active}
+            title={item.name}
+            link={item.slug}
+            paid={item.paid}
           />
         ))}
       </div>
@@ -31,37 +34,35 @@ const Cards: NextPage<CardsPageProps> = ({ data }) => {
   );
 };
 
-export const getServerSideProps = () => {
-  const cards: InvitationCardProps[] = [
-    {
-      id: 1,
-      title: "کارت دعوت عروسی سرور و مشتاق",
-      link: "https://smwedding.sadehzibast.ir",
-      active: false,
-    },
-    {
-      id: 2,
-      title: "کارت دعوت عروسی سرور و مشتاق",
-      link: "https://smwedding.sadehzibast.ir",
-      active: true,
-    },
-    {
-      id: 3,
-      title: "کارت دعوت عروسی سرور و مشتاق",
-      link: "https://smwedding.sadehzibast.ir",
-      active: true,
-    },
-    {
-      id: 4,
-      title: "کارت دعوت عروسی سرور و مشتاق",
-      link: "https://smwedding.sadehzibast.ir",
-      active: false,
-    },
-  ];
+export const getServerSideProps = withIronSessionSsr(
+  async function getServerSideProps({ req, res }) {
+    const sessionToken = req.session.token?.token;
 
-  return {
-    props: { data: cards },
-  };
-};
+    if (sessionToken === undefined) {
+      res.setHeader("Location", "/login");
+      res.statusCode = 302;
+      res.end();
+
+      return {
+        props: {
+          token: "",
+        },
+      };
+    }
+
+    let response: any = await fetchJson(
+      endPoints.cards + "?per_page=50",
+      initGetRequest({ Authorization: `Bearer ${sessionToken}` })
+    );
+
+    return {
+      props: {
+        token: sessionToken,
+        serverResponse: response,
+      },
+    };
+  },
+  sessionOptions
+);
 
 export default Cards;

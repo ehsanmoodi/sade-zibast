@@ -9,15 +9,15 @@ const InvitationCard: React.FC<InvitationCardProps> = ({
   id,
   title,
   link,
-  active,
+  paid,
 }) => {
-  const [switchState, setSwitchState] = useState(active);
+  const [switchState, setSwitchState] = useState(paid);
 
   return (
     <div className="invitation-card">
       <h2 className="invitation-card__title">{title}</h2>
-      <Link href={link}>
-        <a className="invitation-card__link">{link}</a>
+      <Link href={`${link}.sadezibast.ir`}>
+        <a className="invitation-card__link">{`${link}.sadezibast.ir`}</a>
       </Link>
       <div className="invitation-card__actions">
         <div>
@@ -29,12 +29,12 @@ const InvitationCard: React.FC<InvitationCardProps> = ({
           />
         </div>
         <div className="invitation-card__actions__btns">
-          <Link href="#">
+          {/* <Link href="#">
             <a>
               <Delete />
             </a>
-          </Link>
-          <Link href="#">
+          </Link> */}
+          <Link href={`/panel/cards/${id}`}>
             <a>
               <Edit />
             </a>

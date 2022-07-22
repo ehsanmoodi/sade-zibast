@@ -11,4 +11,6 @@ export const endPoints = {
   profileInfo: url("identity"), // GET, POST
   // Files
   uploadFiles: url("files"), // POST
+  // Cards
+  cards: url("invite-cards"),
 };

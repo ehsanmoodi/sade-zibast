@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import { SWRConfig } from "swr";
 import fetchJson from "../lib/fetchJson";
 import { ToastContainer } from "react-toastify";
+import NextNProgress from "nextjs-progressbar";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -14,6 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         },
       }}
     >
+      <NextNProgress color="#D04B4B" />
       <Component {...pageProps} />
       <ToastContainer position="bottom-right" rtl />
     </SWRConfig>

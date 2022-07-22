@@ -41,3 +41,4 @@ yarn-error.log*
 
 # custome server
 server.js
+server.temp
