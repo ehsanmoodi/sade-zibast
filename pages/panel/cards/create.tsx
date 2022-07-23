@@ -70,6 +70,10 @@ const CreateCards: NextPage<
     images: [],
   });
 
+  useEffect(() => {
+    console.log(position);
+  }, [position]);
+
   const [processing, setProcessing] = useState<boolean>(false);
   const [uploading, setUploading] = useState<boolean>(false);
 
@@ -80,7 +84,7 @@ const CreateCards: NextPage<
 
     acceptedFiles.forEach(async (file) => {
       try {
-        const formData = new FormData();
+        let formData = new FormData();
         formData.append("file", file);
 
         let response: any = await fetchJson(
@@ -133,8 +137,8 @@ const CreateCards: NextPage<
             description: data.description,
             description_second: data.description_second,
             address: data.address,
-            latitude: position.lat,
-            longitude: position.lng,
+            latitude: position.lat.toFixed(8),
+            longitude: position.lng.toFixed(8),
             images: data.images.map((item) => item.name),
           },
           {
@@ -210,7 +214,7 @@ const CreateCards: NextPage<
                       src={image.url}
                       alt={image.name}
                       layout="fill"
-                      objectFit="contain"
+                      objectFit="cover"
                       objectPosition="center"
                     />
                   </div>

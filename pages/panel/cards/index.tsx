@@ -9,9 +9,11 @@ import { endPoints } from "../../../utils/endpoints";
 
 import type { CardsList } from "./types";
 
-const Cards: NextPage<{ token: string; serverResponse: CardsList }> = ({
-  serverResponse,
-}) => {
+const Cards: NextPage<{
+  token: string;
+  serverResponse: CardsList;
+  hostname: string;
+}> = ({ serverResponse, hostname }) => {
   return (
     <PanelTemplate
       title="کارت‌های دعوت"
@@ -25,7 +27,7 @@ const Cards: NextPage<{ token: string; serverResponse: CardsList }> = ({
             key={item.id}
             id={item.id}
             title={item.name}
-            link={item.slug}
+            link={`${item.slug}.${hostname}`}
             paid={item.paid}
           />
         ))}
@@ -37,6 +39,9 @@ const Cards: NextPage<{ token: string; serverResponse: CardsList }> = ({
 export const getServerSideProps = withIronSessionSsr(
   async function getServerSideProps({ req, res }) {
     const sessionToken = req.session.token?.token;
+    const hostname = req.headers.host ?? "";
+
+    console.log(hostname);
 
     if (sessionToken === undefined) {
       res.setHeader("Location", "/login");
@@ -46,6 +51,7 @@ export const getServerSideProps = withIronSessionSsr(
       return {
         props: {
           token: "",
+          hostname: "",
         },
       };
     }
@@ -59,6 +65,7 @@ export const getServerSideProps = withIronSessionSsr(
       props: {
         token: sessionToken,
         serverResponse: response,
+        hostname,
       },
     };
   },

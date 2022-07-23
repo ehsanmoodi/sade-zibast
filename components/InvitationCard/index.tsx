@@ -16,8 +16,14 @@ const InvitationCard: React.FC<InvitationCardProps> = ({
   return (
     <div className="invitation-card">
       <h2 className="invitation-card__title">{title}</h2>
-      <Link href={`${link}.sadezibast.ir`}>
-        <a className="invitation-card__link">{`${link}.sadezibast.ir`}</a>
+      <Link
+        href={
+          process.env.NODE_ENV === "production"
+            ? `https://${link}`
+            : `http://${link}`
+        }
+      >
+        <a className="invitation-card__link">{link}</a>
       </Link>
       <div className="invitation-card__actions">
         <div>

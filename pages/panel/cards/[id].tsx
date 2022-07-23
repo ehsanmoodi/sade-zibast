@@ -32,7 +32,7 @@ import type { CardDetail } from "./types";
 
 const CreateCards: NextPage<
   InferGetServerSidePropsType<typeof getServerSideProps>
-> = ({ token, id, cardDetail: CardDetail }) => {
+> = ({ token, id, cardDetail }) => {
   const router = useRouter();
 
   const mapCenter = {
@@ -45,8 +45,8 @@ const CreateCards: NextPage<
     lat: number;
     lng: number;
   }>({
-    lat: 0,
-    lng: 0,
+    lat: cardDetail.latitude,
+    lng: cardDetail.longitude,
   });
 
   const [data, setData] = useState<{
@@ -62,14 +62,14 @@ const CreateCards: NextPage<
       url: string;
     }[];
   }>({
-    name: CardDetail.name,
-    slug: CardDetail.slug,
-    description: CardDetail.description,
-    description_second: CardDetail.description_second,
-    address: CardDetail.address,
-    date_description: CardDetail.date_description,
-    date: CardDetail.date,
-    images: CardDetail.images,
+    name: cardDetail.name,
+    slug: cardDetail.slug,
+    description: cardDetail.description,
+    description_second: cardDetail.description_second,
+    address: cardDetail.address,
+    date_description: cardDetail.date_description,
+    date: cardDetail.date,
+    images: cardDetail.images,
   });
 
   const [processing, setProcessing] = useState<boolean>(false);
@@ -137,8 +137,8 @@ const CreateCards: NextPage<
           description: data.description,
           description_second: data.description_second,
           address: data.address,
-          latitude: position.lat,
-          longitude: position.lng,
+          latitude: position.lat.toFixed(8),
+          longitude: position.lng.toFixed(8),
           images: data.images.map((item) => item.name),
         }),
       });
@@ -156,7 +156,7 @@ const CreateCards: NextPage<
   return (
     <>
       <Head>
-        <title>{`ویرایش ${CardDetail.name}`}</title>
+        <title>{`ویرایش ${cardDetail.name}`}</title>
         <meta
           name="description"
           content="در این صفحه از پنل کاربری می‌توانید کارت دعوت خود را ویرایش کنید"
@@ -165,7 +165,7 @@ const CreateCards: NextPage<
 
       <main className="min-h-screen bg-vista-white">
         <InnerHeader
-          title={`ویرایش ${CardDetail.name}`}
+          title={`ویرایش ${cardDetail.name}`}
           backLink="/panel/cards"
         />
 
@@ -213,7 +213,7 @@ const CreateCards: NextPage<
                       src={image.url}
                       alt={image.name}
                       layout="fill"
-                      objectFit="contain"
+                      objectFit="cover"
                       objectPosition="center"
                     />
                   </div>
@@ -246,7 +246,7 @@ const CreateCards: NextPage<
               }
             />
 
-            {/* {position.lat !== 0 && position.lng !== 0 && (
+            {position.lat !== 0 && position.lng !== 0 && (
               <MapWithNoSSR
                 position={{ lat: position.lat, lng: position.lng }}
               />
@@ -283,7 +283,7 @@ const CreateCards: NextPage<
                 <Delete2 />
                 حذف موقعیت مکانی
               </span>
-            )} */}
+            )}
           </div>
           <div className="create-page__col">
             <InputGroup guide="مثلا: دوشنبه ساعت ۱۱ به صرف چایی و شیرینی میبینمتون.">
@@ -315,12 +315,12 @@ const CreateCards: NextPage<
         </div>
       </main>
 
-      {/* <MapModal
+      <MapModal
         position={position}
         setPosition={setPosition}
         isOpen={isModalOpen}
         toggleModal={() => setIsModalOpen(!isModalOpen)}
-      /> */}
+      />
     </>
   );
 };
@@ -357,6 +357,8 @@ export const getServerSideProps = withIronSessionSsr(
     //     notFound: true,
     //   };
     // }
+
+    console.log(response);
 
     return {
       props: {
@@ -399,5 +401,7 @@ const EmptyCardDetail = {
   paid: false,
   status: 4, // 1=pending, 2=approved, 3=disabled, 4=rejected
   id: "",
+  latitude: 0,
+  longitude: 0,
   expired: true,
 };

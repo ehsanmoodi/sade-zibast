@@ -83,7 +83,7 @@ const Map: React.FC<MapProps> = ({
     <MapContainer
       className={`map ${fullscreen ? "h-full" : "h-36"}`}
       center={position}
-      zoom={15}
+      zoom={20}
       scrollWheelZoom={true}
     >
       <TileLayer

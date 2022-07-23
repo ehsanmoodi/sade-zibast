@@ -62,5 +62,7 @@ export interface CardDetail {
   paid: boolean;
   status: number; // 1=pending, 2=approved, 3=disabled, 4=rejected
   id: string;
+  latitude: number;
+  longitude: number;
   expired: boolean;
 }
