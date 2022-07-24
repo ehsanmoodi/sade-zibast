@@ -115,8 +115,11 @@ const CreateCards: NextPage<
   const updateCard = async () => {
     setProcessing(true);
 
-    if (data.name === "" || data.date === "") {
-      toast.error(messages.requiredCardNameDate);
+    if (data.name === "" || data.date === "" || data.slug === "") {
+      let message = `${data.name === "" ? "(نام کارت)" : ""} ${
+        data.date === "" ? "(تاریخ کارت)" : ""
+      } ${data.slug === "" ? "(لینک دعوت)" : ""} الزامی است.`;
+      toast.error(message);
       setProcessing(false);
       return;
     }

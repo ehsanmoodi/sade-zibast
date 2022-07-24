@@ -20,7 +20,10 @@ const MapWithNoSSR = dynamic(() => import("../../../components/Map"), {
 import type { Value as DateValue } from "react-multi-date-picker";
 import Image from "next/image";
 import { AddLocation, Delete2, EditLocation, Loader } from "../../../icons";
-import fetchJson, { initPostRequest } from "../../../lib/fetchJson";
+import fetchJson, {
+  initGetRequest,
+  initPostRequest,
+} from "../../../lib/fetchJson";
 import { toast } from "react-toastify";
 import { messages } from "../../../utils/messages";
 import { endPoints } from "../../../utils/endpoints";
@@ -70,9 +73,7 @@ const CreateCards: NextPage<
     images: [],
   });
 
-  useEffect(() => {
-    console.log(position);
-  }, [position]);
+  const [isSlugValid, setIsSlugValid] = useState<boolean>(true);
 
   const [processing, setProcessing] = useState<boolean>(false);
   const [uploading, setUploading] = useState<boolean>(false);
@@ -119,9 +120,17 @@ const CreateCards: NextPage<
   const createCard = async () => {
     setProcessing(true);
 
-    if (data.name === "" || data.date === "") {
-      toast.error(messages.requiredCardNameDate);
+    if (data.name === "" || data.date === "" || data.slug === "") {
+      let message = `${data.name === "" ? "(نام کارت)" : ""} ${
+        data.date === "" ? "(تاریخ کارت)" : ""
+      } ${data.slug === "" ? "(لینک دعوت)" : ""} الزامی است.`;
+      toast.error(message);
       setProcessing(false);
+      return;
+    }
+
+    if (!isSlugValid) {
+      toast.error(messages.uniqueSlug);
       return;
     }
 
@@ -157,6 +166,21 @@ const CreateCards: NextPage<
     }
   };
 
+  useEffect(() => {
+    (async () => {
+      try {
+        const response: any = await fetchJson(
+          `${endPoints.slugValidator}?slug=${data.slug}`,
+          initGetRequest({ Authorization: `Bearer ${token}` })
+        );
+
+        setIsSlugValid(!response.data.exist);
+      } catch (error) {
+        toast.error(messages.generalError);
+      }
+    })();
+  }, [data.slug]);
+
   return (
     <>
       <Head>
@@ -184,6 +208,15 @@ const CreateCards: NextPage<
             <InputGroup
               title="لینک دعوت"
               description="لینک دلخواه خود را تایپ کنید. این لینکی است که برای دعوتی های خود ارسال خواهید کرد."
+              guide={
+                !isSlugValid ? (
+                  <span className="text-chestnut-rose">
+                    متاسفانه این لینک دعوت قبلا انتخاب شده است.
+                  </span>
+                ) : (
+                  ""
+                )
+              }
             >
               <Input
                 id="slug"

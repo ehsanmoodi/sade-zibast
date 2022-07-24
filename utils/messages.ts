@@ -12,4 +12,5 @@ export const messages = {
   requiredCardNameDate: "نام و تاریخ کارت الزامی است.",
   successUpdateCard: "کارت دعوت شما با موفقیت بروزرسانی شد.",
   failedUpdateCard: "بروزرسانی کارت دعوت با خطا مواجه شد.",
+  uniqueSlug: "این لینک دعوت قبلا انتخاب شده است.",
 };

@@ -1,5 +1,5 @@
 import { withIronSessionSsr } from "iron-session/next";
-import type { NextPage } from "next";
+import type { InferGetServerSidePropsType, NextPage } from "next";
 
 import { InvitationCard, NewInvitationCard } from "../../../components";
 import fetchJson, { initGetRequest } from "../../../lib/fetchJson";
@@ -9,11 +9,9 @@ import { endPoints } from "../../../utils/endpoints";
 
 import type { CardsList } from "./types";
 
-const Cards: NextPage<{
-  token: string;
-  serverResponse: CardsList;
-  hostname: string;
-}> = ({ serverResponse, hostname }) => {
+const Cards: NextPage<
+  InferGetServerSidePropsType<typeof getServerSideProps>
+> = ({ serverResponse, hostname }) => {
   return (
     <PanelTemplate
       title="کارت‌های دعوت"
@@ -22,15 +20,16 @@ const Cards: NextPage<{
     >
       <div className="cards">
         <NewInvitationCard />
-        {serverResponse.data.items.map((item) => (
-          <InvitationCard
-            key={item.id}
-            id={item.id}
-            title={item.name}
-            link={`${item.slug}.${hostname}`}
-            paid={item.paid}
-          />
-        ))}
+        {serverResponse?.data.items.length !== 0 &&
+          serverResponse?.data.items.map((item) => (
+            <InvitationCard
+              key={item.id}
+              id={item.id}
+              title={item.name}
+              link={`${item.slug}.${hostname}`}
+              paid={item.paid}
+            />
+          ))}
       </div>
     </PanelTemplate>
   );
@@ -41,8 +40,6 @@ export const getServerSideProps = withIronSessionSsr(
     const sessionToken = req.session.token?.token;
     const hostname = req.headers.host ?? "";
 
-    console.log(hostname);
-
     if (sessionToken === undefined) {
       res.setHeader("Location", "/login");
       res.statusCode = 302;
@@ -51,12 +48,13 @@ export const getServerSideProps = withIronSessionSsr(
       return {
         props: {
           token: "",
+          serverResponse: emptyResponse,
           hostname: "",
         },
       };
     }
 
-    let response: any = await fetchJson(
+    const response: CardsList = await fetchJson(
       endPoints.cards + "?per_page=50",
       initGetRequest({ Authorization: `Bearer ${sessionToken}` })
     );
@@ -73,3 +71,39 @@ export const getServerSideProps = withIronSessionSsr(
 );
 
 export default Cards;
+
+const emptyResponse = {
+  data: {
+    status: 302,
+    success: false,
+    meta: {
+      totalCount: 0,
+      pageCount: 0,
+      currentPage: 0,
+      perPage: 0,
+    },
+    links: {
+      self: {
+        href: "",
+      },
+      first: {
+        href: "",
+      },
+      last: {
+        href: "",
+      },
+    },
+    items: [
+      {
+        name: "",
+        date: "",
+        slug: "",
+        price: 0,
+        paid: false,
+        status: 4,
+        id: "",
+        expired: false,
+      },
+    ],
+  },
+};

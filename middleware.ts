@@ -30,12 +30,8 @@ export default function middleware(req: NextRequest) {
     hostname === "sade-zibast.vercel.app"
   ) {
     url.pathname = `${url.pathname}`;
-    console.log(url.pathname);
-    console.log("im running");
     return NextResponse.rewrite(url);
   }
-
-  console.log("im running here");
 
   // rewrite everything else to `/_sites/[site] dynamic route
   url.pathname = `/_sites/${currentHost}${url.pathname}`;

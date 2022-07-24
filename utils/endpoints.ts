@@ -13,4 +13,6 @@ export const endPoints = {
   uploadFiles: url("files"), // POST
   // Cards
   cards: url("invite-cards"),
+  // Slug Validator
+  slugValidator: url("invite-cards/slug"), // GET
 };
