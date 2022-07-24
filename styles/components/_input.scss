@@ -5,7 +5,7 @@
   @apply px-4;
   @apply relative z-0;
   @apply bg-vista-white;
-  font-size: 22px;
+  @apply text-lg;
   padding-top: 15px;
   padding-bottom: 15px;
 
@@ -20,7 +20,7 @@
     @apply absolute z-10;
     @apply transition-all;
     @apply bg-inherit px-1;
-    top: 15px;
+    top: 14px;
   }
 
   input {
@@ -32,11 +32,11 @@
     @apply focus:outline-none;
 
     &:focus + label {
-      @apply -top-3;
+      @apply -top-4;
     }
 
     &.not-empty + label {
-      @apply -top-3;
+      @apply -top-4;
     }
 
     &[type="number"] {

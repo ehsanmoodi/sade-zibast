@@ -361,8 +361,6 @@ export const getServerSideProps = withIronSessionSsr(
     //   };
     // }
 
-    console.log(response);
-
     return {
       props: {
         token: sessionToken,

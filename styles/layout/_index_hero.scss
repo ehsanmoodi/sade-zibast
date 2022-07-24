@@ -21,11 +21,9 @@
     @apply font-normal;
     font-size: 56px;
     line-height: 63px;
+    @apply text-4xl;
 
-    @screen lg {
-      font-size: 64px;
-      line-height: 72px;
-    }
+    @apply lg:text-5xl;
 
     strong {
       @apply font-bold;
@@ -33,9 +31,9 @@
   }
 
   &__subtitle {
-    @apply flex items-center justify-center gap-1;
+    @apply flex items-center justify-center gap-1 opacity-60;
     @apply font-normal leading-9;
-    font-size: 32px;
+    @apply text-xl lg:text-2xl;
     @apply lg:relative lg:z-10;
   }
 

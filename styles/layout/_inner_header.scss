@@ -9,5 +9,6 @@
   &__back {
     @apply transition-all;
     @apply hover:rotate-90;
+    @apply mt-2;
   }
 }

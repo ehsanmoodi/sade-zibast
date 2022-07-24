@@ -1,5 +1,4 @@
 .invite-card {
-  @apply font-kalameh;
   @apply py-12 lg:py-16;
   @apply flex flex-col gap-12 lg:gap-16;
 
@@ -16,16 +15,11 @@
   }
 
   &__title {
-    @apply font-bold leading-10;
-    @apply text-4xl;
-
-    @screen lg {
-      font-size: 40px;
-    }
+    @apply font-bold text-2xl lg:text-3xl;
   }
 
   &__text {
-    @apply font-normal text-2xl lg:text-3xl;
+    @apply font-normal text-xl lg:text-2xl;
   }
 
   &__slider {
@@ -40,15 +34,15 @@
     @apply flex flex-col gap-10 lg:flex-row lg:justify-between;
 
     &__item {
-      @apply flex flex-col gap-3 justify-center items-center text-center;
+      @apply flex flex-col gap-4 justify-center items-center text-center;
       @apply lg:w-1/3;
 
       & > span {
-        @apply font-normal text-3xl opacity-90;
+        @apply font-normal text-2xl opacity-80;
       }
 
       & > p {
-        @apply font-bold text-2xl opacity-90;
+        @apply font-bold text-xl opacity-90;
       }
 
       & > button {

@@ -5,7 +5,7 @@
   @apply px-4;
   @apply relative z-0;
   @apply bg-vista-white;
-  font-size: 22px;
+  @apply text-lg;
   padding-top: 15px;
   padding-bottom: 15px;
 
@@ -15,7 +15,7 @@
     @apply absolute z-10;
     @apply transition-all;
     @apply bg-inherit px-1;
-    top: 15px;
+    top: 14px;
   }
 
   textarea {
@@ -27,60 +27,11 @@
     @apply focus:outline-none;
 
     &:focus + label {
-      @apply -top-3;
+      @apply -top-4;
     }
 
     &.not-empty + label {
-      @apply -top-3;
-    }
-
-    &[type="number"] {
-      &::-webkit-outer-spin-button,
-      &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-      }
-    }
-  }
-}
-.input {
-  @apply font-normal leading-6;
-  @apply border border-black border-opacity-20 rounded-lg;
-  @apply flex flex-row items-center gap-1;
-  @apply px-4;
-  @apply relative z-0;
-  @apply bg-vista-white;
-  font-size: 22px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-
-  span {
-    @apply order-3;
-    @apply opacity-60;
-  }
-
-  label {
-    @apply order-2;
-    @apply text-opacity-60;
-    @apply absolute z-10;
-    @apply transition-all;
-    @apply bg-inherit px-1;
-    top: 15px;
-  }
-
-  input {
-    @apply order-1;
-    @apply grow;
-    @apply text-opacity-90 bg-inherit text-start;
-    @apply opacity-90;
-    @apply relative;
-    @apply focus:outline-none;
-
-    &:focus + label {
-      @apply -top-3;
-    }
-
-    &.not-empty + label {
-      @apply -top-3;
+      @apply -top-4;
     }
 
     &[type="number"] {

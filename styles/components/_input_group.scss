@@ -2,13 +2,13 @@
   @apply flex flex-col gap-2;
 
   &__title {
-    @apply font-bold text-xl;
+    @apply font-bold text-lg;
     @apply opacity-90;
   }
 
   &__description,
   &__guide {
-    @apply font-normal text-lg;
+    @apply font-normal text-base;
     @apply opacity-60;
   }
 }

@@ -18,19 +18,19 @@
   }
 
   &__text {
-    @apply font-bold text-lg text-opacity-60;
+    @apply font-normal text-lg text-opacity-60;
     opacity: 0.6;
     @apply text-center;
   }
 
   &__timer {
-    @apply font-bold text-lg;
+    @apply font-normal text-lg;
     @apply text-center;
     opacity: 0.38;
   }
 
   &__request-again {
-    @apply font-bold text-lg;
+    @apply font-normal text-lg;
     @apply text-center;
     @apply transition-all;
     @apply underline underline-offset-8;

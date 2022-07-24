@@ -15,14 +15,22 @@ export default function middleware(req: NextRequest) {
 
   const hostname = req.headers.get("host") || "localhost:3000";
 
-  // console.log(hostname);
-
   const currentHost =
     process.env.NODE_ENV === "production"
       ? hostname
           .replace(`.sadezibast.ir`, "")
           .replace(`.sade-zibast.vercel.app`, "")
       : hostname.replace(`.localhost:3000`, "");
+
+  if (currentHost == "/") {
+    if (url.pathname === "/login") {
+      url.pathname = "/";
+      return NextResponse.redirect(url);
+    }
+
+    url.pathname = `${url.pathname}`;
+    return NextResponse.rewrite(url);
+  }
 
   if (
     hostname === "localhost:3000" ||

@@ -31,9 +31,11 @@
 
     li {
       a {
-        @apply relative;
+        @apply relative opacity-40;
 
         &.active {
+          @apply opacity-90;
+
           &::after {
             content: "";
             @apply absolute left-0 right-0 -bottom-2 mx-auto;
@@ -48,7 +50,7 @@
   }
 
   &__action {
-    @apply flex;
+    @apply flex items-center;
     @apply gap-1;
 
     span {
