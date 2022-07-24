@@ -1,7 +1,8 @@
+import { Menu, Transition } from "@headlessui/react";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import ToggleIcon from "../../components/ToggleIcon";
 import {
   AccountCircle,
@@ -84,9 +85,43 @@ const PanelTemplate: React.FC<Props> = ({
                 </a>
               </Link>
 
-              <div className="panel__menu__account">
-                <AccountCircle />
-              </div>
+              <Menu as="div" className="panel__menu__account">
+                <Menu.Button className="panel__menu__account__toggle">
+                  <AccountCircle />
+                </Menu.Button>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <Menu.Items as="ul" className="panel__menu__account__body">
+                    <Menu.Item
+                      as="li"
+                      className="panel__menu__account__body__item"
+                    >
+                      <a
+                        href=""
+                        onClick={async (event) => {
+                          event.preventDefault();
+                          mutateToken(
+                            await fetchJson("/api/logout", initPostRequest()),
+                            false
+                          );
+
+                          router.push("/");
+                        }}
+                      >
+                        <Exit />
+                        خروج از حساب
+                      </a>
+                    </Menu.Item>
+                  </Menu.Items>
+                </Transition>
+              </Menu>
 
               <ul className={`panel__menu__items ${isActive && "open"}`}>
                 {menuItems.map((item) => (
@@ -117,7 +152,7 @@ const PanelTemplate: React.FC<Props> = ({
                     }}
                   >
                     <Exit />
-                    خروچ از حساب
+                    خروج از حساب
                   </a>
                 </li>
               </ul>
