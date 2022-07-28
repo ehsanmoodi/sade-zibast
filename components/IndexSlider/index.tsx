@@ -9,6 +9,7 @@ const slides = [
       <IndexSlide
         image={{ src: "https://picsum.photos/600/400?random=1", alt: "" }}
         link="#"
+        text="نمونه کارت عروسی"
       />
     ),
   },
@@ -18,6 +19,7 @@ const slides = [
       <IndexSlide
         image={{ src: "https://picsum.photos/600/400?random=2", alt: "" }}
         link="#"
+        text="نمونه کارت عروسی"
       />
     ),
   },
@@ -27,6 +29,7 @@ const slides = [
       <IndexSlide
         image={{ src: "https://picsum.photos/600/400?random=3", alt: "" }}
         link="#"
+        text="نمونه کارت عروسی"
       />
     ),
   },
@@ -36,6 +39,7 @@ const slides = [
       <IndexSlide
         image={{ src: "https://picsum.photos/600/400?random=4", alt: "" }}
         link="#"
+        text="نمونه کارت عروسی"
       />
     ),
   },
@@ -45,6 +49,7 @@ const slides = [
       <IndexSlide
         image={{ src: "https://picsum.photos/600/400?random=5", alt: "" }}
         link="#"
+        text="نمونه کارت عروسی"
       />
     ),
   },
