@@ -10,6 +10,7 @@ import {
   IndexHero,
   IndexSlider,
 } from "../components";
+import IndexFeatures from "../components/IndexFeatures";
 
 const Home: NextPage = () => {
   return (
@@ -26,6 +27,7 @@ const Home: NextPage = () => {
 
       <main>
         <IndexHero />
+        <IndexFeatures />
         <IndexSlider />
         <IndexCategories />
         <IndexArticles />

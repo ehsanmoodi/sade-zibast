@@ -20,6 +20,10 @@ import AddLocation from "./add-location.svg";
 import Loader from "./loader.svg";
 import BigCalendar from "./big-calendar.svg";
 import BigLocation from "./big-location.svg";
+import FeatureMap from "./feature-map.svg";
+import FeatureCalendar from "./feature-calendar.svg";
+import FeatureGallery from "./feature-gallery.svg";
+import FeatureText from "./feature-text.svg";
 
 export {
   Logo,
@@ -44,4 +48,8 @@ export {
   Loader,
   BigCalendar,
   BigLocation,
+  FeatureMap,
+  FeatureCalendar,
+  FeatureGallery,
+  FeatureText,
 };
