@@ -1,0 +1,55 @@
+.page {
+  @apply flex flex-col;
+  @apply min-h-screen;
+
+  &__content {
+    @apply grow;
+    @apply flex flex-col gap-6;
+    @apply py-4 lg:pt-6 px-4 xl:px-0;
+    @apply container mx-auto lg:max-w-2xl;
+
+    &__breadcrumb {
+      @apply flex flex-wrap;
+
+      li {
+        @apply font-normal text-sm text-chestnut-rose;
+        @apply flex items-center;
+
+        &:not(:last-child)::after {
+          content: "";
+          @apply w-6 h-6;
+          background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 8L10 12L14 16' stroke='%23323232' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+          @apply bg-no-repeat bg-center;
+        }
+
+        a {
+          @apply text-mine-shaft underline-offset-8 transition-all;
+          @apply hover:underline;
+        }
+      }
+    }
+
+    h1 {
+      @apply text-2xl font-bold opacity-90;
+      @apply lg:text-3xl;
+    }
+
+    h2 {
+      @apply text-base font-bold opacity-90;
+      @apply lg:text-xl;
+    }
+
+    p {
+      @apply text-base font-normal opacity-90;
+    }
+
+    a {
+      @apply text-base font-normal opacity-90 text-chestnut-rose underline-offset-8;
+      @apply hover:underline;
+    }
+  }
+
+  &__bg {
+    @apply absolute left-0 bottom-0 -z-10;
+  }
+}

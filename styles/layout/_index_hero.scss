@@ -21,7 +21,7 @@
     @apply font-normal;
     font-size: 56px;
     line-height: 63px;
-    @apply text-4xl;
+    @apply text-4xl text-center;
 
     @apply lg:text-5xl;
 
@@ -33,7 +33,7 @@
   &__subtitle {
     @apply flex items-center justify-center gap-1 opacity-60;
     @apply font-normal leading-9;
-    @apply text-xl lg:text-2xl;
+    @apply text-xl lg:text-2xl text-center;
     @apply lg:relative lg:z-10;
   }
 
