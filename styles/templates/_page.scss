@@ -57,6 +57,26 @@
       }
     }
     // Page specific styles - end
+
+    // Contact page specific styles - start
+    .contact-page {
+      @apply flex flex-col gap-10;
+
+      &__items {
+        @apply -mx-4 lg:mx-0;
+
+        li {
+          @apply py-3 px-4;
+          @apply text-sm lg:rounded-md;
+          @apply flex justify-between;
+
+          &:nth-child(even) {
+            background: rgba(0, 0, 0, 0.04);
+          }
+        }
+      }
+    }
+    // Contact page specific styles - end
   }
 
   &__bg {
