@@ -4,11 +4,12 @@ import { useState } from "react";
 import { Button, Input } from "../../components";
 import ArticleCard from "../../components/ArticleCard";
 import { ArticleCardProps } from "../../components/ArticleCard/types";
-import { Search } from "../../icons";
+import { Search, VideoPlayBtn } from "../../icons";
 import { PageTemplate } from "../../templates";
 
 const About: NextPage = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [videoIsPlaying, setVideoIsPlaying] = useState<boolean>(false);
 
   const latestArticles: ArticleCardProps[] = [
     {
@@ -100,6 +101,18 @@ const About: NextPage = () => {
     return classes.filter(Boolean).join(" ");
   }
 
+  const playVideo = () => {
+    const video = document.getElementById("video") as HTMLVideoElement;
+    video.play();
+    setVideoIsPlaying(true);
+  };
+
+  const pauseVideo = () => {
+    const video = document.getElementById("video") as HTMLVideoElement;
+    video.pause();
+    setVideoIsPlaying(false);
+  };
+
   return (
     <PageTemplate
       title="مقالات"
@@ -129,7 +142,22 @@ const About: NextPage = () => {
           onChange={(event) => setSearchQuery(event.target.value)}
         />
 
-        <div className="blog__video"></div>
+        <div className="blog__video">
+          <video
+            onClick={pauseVideo}
+            id="video"
+            src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4"
+            poster="/video-poster.png"
+          ></video>
+          <div
+            id="video-layer"
+            className={`blog__video__layer ${videoIsPlaying ? "hide" : ""}`}
+          >
+            <button onClick={playVideo}>
+              <VideoPlayBtn />
+            </button>
+          </div>
+        </div>
 
         <Tab.Group as="div" className="blog__content">
           <Tab.List className="blog__content__tabs">

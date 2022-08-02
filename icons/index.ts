@@ -25,6 +25,7 @@ import FeatureCalendar from "./feature-calendar.svg";
 import FeatureGallery from "./feature-gallery.svg";
 import FeatureText from "./feature-text.svg";
 import Search from "./search.svg";
+import VideoPlayBtn from "./video-play-btn.svg";
 
 export {
   Logo,
@@ -54,4 +55,5 @@ export {
   FeatureGallery,
   FeatureText,
   Search,
+  VideoPlayBtn,
 };

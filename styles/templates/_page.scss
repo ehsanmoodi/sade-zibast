@@ -129,6 +129,36 @@
         @apply bg-white;
       }
 
+      &__video {
+        @apply relative;
+        @apply h-64 md:h-80;
+
+        @screen lg {
+          height: 460px;
+        }
+
+        video {
+          @apply w-full h-full;
+          @apply bg-cover bg-center;
+          @apply rounded-lg lg:rounded-2xl;
+
+          &[poster] {
+            @apply bg-cover bg-center;
+            @apply object-cover object-center;
+          }
+        }
+
+        &__layer {
+          @apply absolute bg-black bg-opacity-20 w-full h-full inset-0;
+          @apply rounded-lg lg:rounded-2xl;
+          @apply flex items-center justify-center;
+
+          &.hide {
+            @apply hidden;
+          }
+        }
+      }
+
       &__content {
         @apply flex flex-col gap-6;
 
