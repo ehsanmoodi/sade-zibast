@@ -24,4 +24,11 @@
     @apply transition-all;
     @apply hover:bg-transparent hover:text-mine-shaft;
   }
+
+  &--white {
+    @apply border border-black border-opacity-20;
+    @apply bg-white text-black;
+    @apply transition-all;
+    @apply hover:bg-black hover:bg-opacity-20;
+  }
 }

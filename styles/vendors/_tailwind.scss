@@ -5,9 +5,11 @@
 @layer base {
   html {
     @apply font-kalameh;
+    @apply outline-none;
   }
 
   body {
     background: #fdfdfd;
+    @apply outline-none;
   }
 }

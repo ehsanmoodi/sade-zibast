@@ -108,6 +108,7 @@
       }
     }
 
+    // Blog single page specific styles - start
     .blog-single-related {
       @apply flex flex-col gap-4 lg:gap-8;
 
@@ -117,6 +118,46 @@
 
       &__list {
         @apply grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-4;
+      }
+    }
+    // Blog single page specific styles - end
+
+    .blog {
+      @apply flex flex-col gap-8 lg:gap-10;
+
+      .input {
+        @apply bg-white;
+      }
+
+      &__content {
+        @apply flex flex-col gap-6;
+
+        &__tabs {
+          @apply flex justify-center;
+          @apply border-b border-alto;
+          @apply -mx-4 lg:mx-0;
+
+          button {
+            @apply w-full lg:w-auto;
+            @apply py-3 px-5;
+            @apply focus:outline-none;
+
+            &.selected {
+              @apply border-b border-red-400;
+            }
+          }
+        }
+
+        &__list {
+          @apply flex flex-col gap-x-6 gap-y-8;
+          @apply lg:grid lg:grid-cols-2 lg:gap-x-6 lg:gap-y-10;
+
+          &__action {
+            @apply col-span-2;
+            @apply mt-8;
+            @apply flex justify-center;
+          }
+        }
       }
     }
   }

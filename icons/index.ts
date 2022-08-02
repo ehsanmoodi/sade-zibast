@@ -24,6 +24,7 @@ import FeatureMap from "./feature-map.svg";
 import FeatureCalendar from "./feature-calendar.svg";
 import FeatureGallery from "./feature-gallery.svg";
 import FeatureText from "./feature-text.svg";
+import Search from "./search.svg";
 
 export {
   Logo,
@@ -52,4 +53,5 @@ export {
   FeatureCalendar,
   FeatureGallery,
   FeatureText,
+  Search,
 };
