@@ -13,10 +13,12 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
       <div className="article-card__image">
         <Image src={image.src} alt={image.alt} layout="fill" />
       </div>
-      <Link href={href}>
-        <a className="article-card__link">{title}</a>
-      </Link>
-      <span className="article-card__date">{date}</span>
+      <div className="article-card__body">
+        <Link href={href}>
+          <a className="article-card__link">{title}</a>
+        </Link>
+        {date && <span className="article-card__date">{date}</span>}
+      </div>
     </article>
   );
 };

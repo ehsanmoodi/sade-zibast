@@ -12,7 +12,7 @@ const articles: ArticleCardProps[] = [
     },
     title: "۱۰ ایده ی ساده ولی خلاقانه برای ساخت کارت دعوت",
     date: "امروز / ۲ دقیقه پیش",
-    href: "#",
+    href: "/blog/1",
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const articles: ArticleCardProps[] = [
     },
     title: "۱۰ ایده ی ساده ولی خلاقانه برای ساخت کارت دعوت",
     date: "امروز / ۲ دقیقه پیش",
-    href: "#",
+    href: "/blog/1",
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ const articles: ArticleCardProps[] = [
     },
     title: "۱۰ ایده ی ساده ولی خلاقانه برای ساخت کارت دعوت",
     date: "امروز / ۲ دقیقه پیش",
-    href: "#",
+    href: "/blog/1",
   },
 ];
 

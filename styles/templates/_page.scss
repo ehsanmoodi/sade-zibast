@@ -40,7 +40,7 @@
     }
 
     p {
-      @apply text-base font-normal opacity-90;
+      @apply text-base leading-7 font-normal opacity-90;
     }
 
     a {
@@ -77,6 +77,48 @@
       }
     }
     // Contact page specific styles - end
+
+    .blog-single {
+      @apply flex flex-col gap-6 gap-8;
+      @apply text-justify;
+
+      img {
+        @apply w-full h-auto rounded;
+      }
+
+      &__feature {
+        @apply relative -mx-4 lg:mx-0;
+
+        img {
+          @apply lg:rounded;
+        }
+
+        &__box {
+          @apply absolute bottom-0 left-0 right-0 bg-black bg-opacity-30;
+          @apply flex justify-between px-4 py-3;
+          @apply text-sm text-white;
+
+          .liked {
+            path {
+              @apply transition-all;
+              @apply stroke-chestnut-rose fill-chestnut-rose;
+            }
+          }
+        }
+      }
+    }
+
+    .blog-single-related {
+      @apply flex flex-col gap-4 lg:gap-8;
+
+      &__title {
+        @apply font-bold text-lg opacity-90;
+      }
+
+      &__list {
+        @apply grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-4;
+      }
+    }
   }
 
   &__bg {

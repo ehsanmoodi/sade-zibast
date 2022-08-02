@@ -1,10 +1,18 @@
 .article-card {
   @apply w-full;
+  @apply flex lg:flex-col gap-2 lg:gap-0;
+  @apply transition-all;
+
+  &__body {
+    @apply flex flex-col justify-around gap-2;
+  }
 
   &__image {
+    @apply shrink-0;
     @apply relative;
     @apply rounded;
-    @apply h-48;
+    @apply h-28 w-28;
+    @apply lg:h-48 lg:w-full;
 
     img {
       @apply rounded;
@@ -14,11 +22,26 @@
 
   &__link {
     @apply flex;
-    @apply font-normal text-xl leading-6;
-    @apply mt-2;
+    @apply lg:mt-2;
+    color: black !important;
+    text-decoration: none !important;
+    font-size: 16px !important;
+    font-weight: normal !important;
+    line-height: 27px !important;
+    @apply transition-all;
+    @apply text-justify;
+
+    &:hover {
+      color: #d04b4b !important;
+    }
+
+    @screen lg {
+      font-size: 18px !important;
+      line-height: 34px !important;
+    }
   }
 
   &__date {
-    @apply font-normal text-sm text-opacity-60 leading-4;
+    @apply font-normal text-sm text-opacity-60 leading-4 inline-block;
   }
 }

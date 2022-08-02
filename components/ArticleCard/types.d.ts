@@ -4,7 +4,7 @@ export interface ArticleCardProps {
     alt?: string;
   };
   title: string;
-  date: string;
+  date?: string;
   href: string;
   id?: string | number;
 }
