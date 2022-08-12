@@ -15,8 +15,6 @@
     right: -12.5vw;
   }
 
-  // @apply -ml-64 -mr-60;
-
   &-wrapper {
     @apply py-2;
   }
@@ -27,10 +25,22 @@
   @apply bg-white rounded;
   min-height: 100px;
   border: 1px solid rgba(0, 0, 0, 0.06);
+  @apply transition-all;
+  @apply scale-90;
+
+  img {
+    @apply rounded;
+  }
+
+  &-next,
+  &-prev {
+    @apply scale-95;
+  }
 
   &-active {
     border: 2px solid rgba(0, 0, 0, 0.06);
     box-shadow: 0px 4px 80px rgba(0, 0, 0, 0.04);
+    @apply scale-100;
   }
 }
 

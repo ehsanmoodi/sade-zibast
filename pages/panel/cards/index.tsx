@@ -1,17 +1,28 @@
 import { withIronSessionSsr } from "iron-session/next";
 import type { InferGetServerSidePropsType, NextPage } from "next";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 import { InvitationCard, NewInvitationCard } from "../../../components";
 import fetchJson, { initGetRequest } from "../../../lib/fetchJson";
 import { sessionOptions } from "../../../lib/session";
 import { PanelTemplate } from "../../../templates";
 import { endPoints } from "../../../utils/endpoints";
+import { messages } from "../../../utils/messages";
 
 import type { CardsList } from "./types";
 
 const Cards: NextPage<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ serverResponse, hostname }) => {
+  useEffect(() => {
+    if (serverResponse?.data.items.length === 0) {
+      toast.info(messages.noCards, {
+        autoClose: 10000,
+      });
+    }
+  }, []);
+
   return (
     <PanelTemplate
       title="کارت‌های دعوت"

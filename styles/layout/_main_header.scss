@@ -51,6 +51,7 @@
 
   &__action {
     @apply flex items-center;
+    @apply leading-10;
     @apply gap-1;
 
     span {

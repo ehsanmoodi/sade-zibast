@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     >
       <Component {...pageProps} />
       <ToastContainer position="bottom-right" rtl />
-      <NextNProgress color="#D04B4B" />
+      <NextNProgress color="#D04B4B" options={{ showSpinner: false }} />
     </SWRConfig>
   );
 }

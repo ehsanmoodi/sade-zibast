@@ -1,8 +1,12 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 import { AccountCircle, LogoLinear } from "../../icons";
+import fetchJson, { initGetRequest } from "../../lib/fetchJson";
+import useToken from "../../lib/useToken";
+import { endPoints } from "../../utils/endpoints";
 import ToggleIcon from "../ToggleIcon";
 
 import type { LinkProps } from "./types";
@@ -33,10 +37,31 @@ const links: LinkProps[] = [
 const MainHeader = () => {
   const router = useRouter();
   const [isActive, setIsActive] = useState<boolean>(false);
+  const [name, setName] = useState<string>("ورود به حساب");
+  const { token: sessionToken } = useToken();
 
   const toggleMenu = () => {
     setIsActive(!isActive);
   };
+
+  useEffect(() => {
+    (async () => {
+      if (sessionToken) {
+        try {
+          const response: any = await fetchJson(
+            endPoints.profileInfo,
+            initGetRequest({
+              Authorization: `Bearer ${sessionToken?.token}`,
+            })
+          );
+
+          setName(`${response.data.name} ${response.data.lastname}`);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    })();
+  }, [sessionToken]);
 
   return (
     <header className="header">
@@ -63,7 +88,7 @@ const MainHeader = () => {
 
         <Link href="/panel/cards">
           <a className="header__action">
-            <span>ورود به حساب</span>
+            <span>{name}</span>
             <AccountCircle />
           </a>
         </Link>

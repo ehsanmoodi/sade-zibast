@@ -1,13 +1,22 @@
 import type { GetServerSideProps, NextPage } from "next";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 import { PaymentCard } from "../../components";
 import { PaymentCardProps } from "../../components/PaymentCard/types";
 import { PanelTemplate } from "../../templates";
+import { messages } from "../../utils/messages";
 
 interface PaymentPageProps {
   data: PaymentCardProps[];
 }
 
 const Payments: NextPage<PaymentPageProps> = ({ data }) => {
+  useEffect(() => {
+    if (data.length === 0) {
+      toast.info(messages.noPayments, { autoClose: 10000 });
+    }
+  }, []);
+
   return (
     <PanelTemplate
       title="تاریخچه پرداخت‌ها"
