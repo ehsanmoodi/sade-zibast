@@ -30,11 +30,13 @@ import { endPoints } from "../../../utils/endpoints";
 import { withIronSessionSsr } from "iron-session/next";
 import { sessionOptions } from "../../../lib/session";
 import { useRouter } from "next/router";
+import useToken from "../../../lib/useToken";
 
 const CreateCards: NextPage<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ token }) => {
   const router = useRouter();
+  const { token: sessionToken } = useToken();
 
   const mapCenter = {
     lat: 35.7219,
@@ -135,7 +137,7 @@ const CreateCards: NextPage<
     }
 
     try {
-      await fetchJson(
+      const response: any = await fetchJson(
         endPoints.cards,
         initPostRequest(
           {
@@ -157,10 +159,34 @@ const CreateCards: NextPage<
       );
 
       setProcessing(false);
-      router.push("/panel/cards");
-      toast.success(messages.successCreateCard);
+      pay(response.data.id);
+
+      // router.push("/panel/cards");
+      // toast.success(messages.successCreateCard);
     } catch (error) {
       toast.error(messages.failedCreateCard);
+      setProcessing(false);
+      console.log(error);
+    }
+  };
+
+  const pay = async (id: string) => {
+    setProcessing(true);
+
+    try {
+      const response: any = await fetchJson(
+        `${process.env.NEXT_PUBLIC_API_URL}/invite-cards/${id}/payment`,
+        initPostRequest(
+          {},
+          {
+            Authorization: `Bearer ${sessionToken?.token}`,
+          }
+        )
+      );
+
+      router.push(response.data.url);
+      setProcessing(false);
+    } catch (error) {
       setProcessing(false);
       console.log(error);
     }
