@@ -78,7 +78,7 @@ const CreateCards: NextPage<
   const [processing, setProcessing] = useState<boolean>(false);
   const [uploading, setUploading] = useState<boolean>(false);
 
-  const price = 290000;
+  const price = 29000;
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setUploading(true);
