@@ -5,7 +5,7 @@ const PaymentCard: React.FC<PaymentCardProps> = ({
   price,
   trackingCode,
   gateway,
-  discount,
+  paid,
 }) => {
   return (
     <div className="payment-card">
@@ -21,11 +21,13 @@ const PaymentCard: React.FC<PaymentCardProps> = ({
         </div>
         <div>
           <span>درگاه</span>
-          <span>{gateway}</span>
+          <span>{gateway === "zarinpal" ? "زرین‌پال" : gateway}</span>
         </div>
         <div>
-          <span>میزان تخفیف</span>
-          <span>{discount}</span>
+          <span>وضعیت</span>
+          <span className={paid ? "text-green-800" : "text-red-500"}>
+            {paid ? "موفق" : "ناموفق"}
+          </span>
         </div>
       </div>
     </div>

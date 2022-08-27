@@ -1,8 +1,8 @@
 export interface PaymentCardProps {
   id: string | number;
   date: string;
-  price: string;
-  trackingCode: string;
+  price: number;
+  trackingCode: number | null;
   gateway: string;
-  discount: string;
+  paid: boolean;
 }

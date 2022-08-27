@@ -15,4 +15,6 @@ export const endPoints = {
   cards: url("invite-cards"),
   // Slug Validator
   slugValidator: url("invite-cards/slug"), // GET
+  // payment
+  payments: url("payments"),
 };
