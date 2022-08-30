@@ -33,8 +33,6 @@ const Payments: NextPage<
         return;
       });
     }
-
-    console.log(serverResponse);
   }, []);
 
   return (

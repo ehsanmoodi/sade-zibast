@@ -48,8 +48,8 @@ const CreateCards: NextPage<
     lat: number;
     lng: number;
   }>({
-    lat: 0,
-    lng: 0,
+    lat: 35.7219,
+    lng: 51.3347,
   });
 
   const [data, setData] = useState<{

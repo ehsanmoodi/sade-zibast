@@ -35,6 +35,10 @@ const CreateCards: NextPage<
 > = ({ token, id, cardDetail }) => {
   const router = useRouter();
 
+  useEffect(() => {
+    console.log(cardDetail);
+  }, []);
+
   const mapCenter = {
     lat: 35.7219,
     lng: 51.3347,
@@ -45,8 +49,8 @@ const CreateCards: NextPage<
     lat: number;
     lng: number;
   }>({
-    lat: cardDetail.latitude,
-    lng: cardDetail.longitude,
+    lat: cardDetail.latitude ?? 0,
+    lng: cardDetail.longitude ?? 0,
   });
 
   const [data, setData] = useState<{
