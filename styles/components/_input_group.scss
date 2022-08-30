@@ -2,6 +2,7 @@
   @apply flex flex-col gap-2;
 
   &__title {
+    @apply text-abbey;
     @apply font-bold text-lg;
     @apply opacity-90;
   }

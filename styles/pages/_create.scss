@@ -8,6 +8,7 @@
 
   &__invoice {
     &__title {
+      @apply text-abbey;
       @apply font-bold text-xl opacity-90;
     }
 

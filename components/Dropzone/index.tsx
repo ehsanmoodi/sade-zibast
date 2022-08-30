@@ -20,7 +20,8 @@ const Dropzone: React.FC<DropzoneProps> = ({ onDrop }) => {
           <Upload />
           <span>
             تصویر را در اینجا رها کنید. <br />
-            برای انتخاب تصویر کلیک کنید
+            برای انتخاب تصویر کلیک کنید. <br />
+            (حداکثر ۱۰ تصویر)
           </span>
         </div>
       </div>

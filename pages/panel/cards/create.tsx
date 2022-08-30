@@ -83,9 +83,16 @@ const CreateCards: NextPage<
   const price = 29000;
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
+    if (data.images.length >= 10) {
+      toast.info(messages.noImagesExceeds);
+      return;
+    }
+
     setUploading(true);
 
     acceptedFiles.forEach(async (file) => {
+      let localImages = data.images;
+
       try {
         let formData = new FormData();
         formData.append("file", file);
@@ -94,21 +101,21 @@ const CreateCards: NextPage<
           endPoints.uploadFiles + "?is_image=1",
           {
             method: "POST",
+            body: formData,
             headers: {
               Authorization: `Bearer ${token}`,
             },
-            body: formData,
           }
         );
 
         // Add uploaded image name to data
+        localImages.push({ name: response.data.name, url: response.data.url });
+
         setData({
           ...data,
-          images: [
-            ...data.images,
-            { name: response.data.name, url: response.data.url },
-          ],
+          images: localImages,
         });
+
         toast.success(messages.successUploadImage);
         setUploading(false);
       } catch (error) {
@@ -267,8 +274,8 @@ const CreateCards: NextPage<
             <InputGroup title="گالری تصاویر">
               <Dropzone onDrop={onDrop} />
               <div className="thumbs">
-                {data.images.map((image, index) => (
-                  <div key={index}>
+                {data.images.map((image) => (
+                  <div key={image.name}>
                     <Image
                       src={image.url}
                       alt={image.name}
