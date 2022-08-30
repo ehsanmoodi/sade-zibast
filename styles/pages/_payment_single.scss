@@ -1,0 +1,11 @@
+.payment-single {
+  &__process {
+    @apply w-screen h-screen;
+    @apply bg-vista-white;
+    @apply flex items-center justify-center;
+  }
+}
+
+.swal2-cancel {
+  @apply mr-5;
+}

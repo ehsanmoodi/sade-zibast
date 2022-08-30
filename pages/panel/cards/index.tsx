@@ -1,12 +1,13 @@
 import { withIronSessionSsr } from "iron-session/next";
 import type { InferGetServerSidePropsType, NextPage } from "next";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { toast } from "react-toastify";
 
 import { InvitationCard, NewInvitationCard } from "../../../components";
 import fetchJson, { initGetRequest } from "../../../lib/fetchJson";
 import { sessionOptions } from "../../../lib/session";
 import { PanelTemplate } from "../../../templates";
+import { Alert } from "../../../utils/alert";
 import { endPoints } from "../../../utils/endpoints";
 import { messages } from "../../../utils/messages";
 
@@ -15,10 +16,20 @@ import type { CardsList } from "./types";
 const Cards: NextPage<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ serverResponse, hostname }) => {
+  const router = useRouter();
+
   useEffect(() => {
     if (serverResponse?.data.items.length === 0) {
-      toast.info(messages.noCards, {
-        autoClose: 10000,
+      Alert.fire({
+        text: messages.noCards,
+        icon: "info",
+        confirmButtonText: "ایجاد کارت جدید",
+      }).then((sweetAlertResult) => {
+        if (sweetAlertResult.isConfirmed) {
+          router.push("/panel/cards/create");
+        }
+
+        return;
       });
     }
   }, []);

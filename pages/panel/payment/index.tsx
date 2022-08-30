@@ -1,33 +1,39 @@
 import { withIronSessionSsr } from "iron-session/next";
 import moment from "jalali-moment";
-import type {
-  GetServerSideProps,
-  InferGetServerSidePropsType,
-  NextPage,
-} from "next";
+import type { InferGetServerSidePropsType, NextPage } from "next";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { toast } from "react-toastify";
 import { PaymentCard } from "../../../components";
-import { PaymentCardProps } from "../../../components/PaymentCard/types";
 import fetchJson, { initGetRequest } from "../../../lib/fetchJson";
 
 import { sessionOptions } from "../../../lib/session";
 import { PanelTemplate } from "../../../templates";
+import { Alert } from "../../../utils/alert";
 import { endPoints } from "../../../utils/endpoints";
 import { messages } from "../../../utils/messages";
 import { PaymentsList } from "./types";
 
-interface PaymentPageProps {
-  data: PaymentCardProps[];
-}
-
 const Payments: NextPage<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ serverResponse }) => {
+  const router = useRouter();
+
   useEffect(() => {
     if (serverResponse?.data.items.length === 0) {
-      toast.info(messages.noPayments, { autoClose: 10000 });
+      Alert.fire({
+        text: messages.noPayments,
+        icon: "info",
+        confirmButtonText: "ایجاد کارت جدید",
+      }).then((sweetAlertResult) => {
+        if (sweetAlertResult.isConfirmed) {
+          router.push("/panel/cards/create");
+        }
+
+        return;
+      });
     }
+
+    console.log(serverResponse);
   }, []);
 
   return (

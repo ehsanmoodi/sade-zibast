@@ -39,3 +39,9 @@ export interface PaymentsList {
     success: boolean;
   };
 }
+
+export interface PaymentSingle {
+  status: number;
+  success: boolean;
+  data: PaymentsListItem;
+}

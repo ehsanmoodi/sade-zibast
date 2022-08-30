@@ -334,7 +334,6 @@ export const getServerSideProps = withIronSessionSsr(
   async function getServerSideProps({ req, res, query }) {
     const sessionToken = req.session.token?.token;
     const id: string = query ? (query.id as string) : "";
-    let response: any;
 
     if (sessionToken === undefined) {
       res.setHeader("Location", "/login");
@@ -351,7 +350,7 @@ export const getServerSideProps = withIronSessionSsr(
     }
 
     // try {
-    response = await fetchJson(
+    const response: any = await fetchJson(
       endPoints.cards + "/" + id,
       initGetRequest({ Authorization: `Bearer ${sessionToken}` })
     );

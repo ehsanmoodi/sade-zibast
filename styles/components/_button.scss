@@ -4,6 +4,7 @@
   @apply rounded-md;
   @apply flex items-center justify-center;
   min-width: 90px;
+  @apply outline-none;
 
   &--primary {
     @apply border border-sea-green;

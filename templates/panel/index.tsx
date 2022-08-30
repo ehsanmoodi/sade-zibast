@@ -44,7 +44,7 @@ const menuItems: {
   {
     key: "payments",
     label: "پرداخت‌ها",
-    href: "/panel/payments",
+    href: "/panel/payment",
     icon: <CreditCard />,
   },
 ];

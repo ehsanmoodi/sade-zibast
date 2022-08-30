@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -17,13 +17,6 @@ const Map: React.FC<MapProps> = ({
   position,
   setPosition,
 }) => {
-  // const mapCenter = {
-  //   lat: 35.7219,
-  //   lng: 51.3347,
-  // };
-
-  // const [position, setPosition] = useState(center);
-
   const DraggableMarker = () => {
     const markerRef = useRef(null);
 
