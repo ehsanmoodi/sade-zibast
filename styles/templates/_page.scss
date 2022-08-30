@@ -30,13 +30,15 @@
     }
 
     h1 {
-      @apply text-2xl font-bold opacity-90;
-      @apply lg:text-3xl;
+      @apply text-abbey;
+      @apply text-xl font-bold opacity-90;
+      @apply lg:text-2xl;
     }
 
     h2 {
+      @apply text-abbey;
       @apply text-base font-bold opacity-90;
-      @apply lg:text-xl;
+      @apply lg:text-lg;
     }
 
     p {

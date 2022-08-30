@@ -1,5 +1,5 @@
 .footer {
-  @apply font-normal text-lg text-opacity-70 text-center;
+  @apply font-light text-sm text-opacity-70 text-center;
   @apply mt-14 lg:mt-20;
 
   $parent: &;

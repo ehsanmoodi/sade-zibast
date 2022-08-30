@@ -25,7 +25,7 @@
     @apply lg:mt-2;
     color: black !important;
     text-decoration: none !important;
-    font-size: 16px !important;
+    font-size: 18px !important;
     font-weight: normal !important;
     line-height: 23px !important;
     @apply transition-all;
@@ -43,5 +43,6 @@
 
   &__date {
     @apply font-normal text-xs text-opacity-60 leading-4 inline-block;
+    @apply opacity-60;
   }
 }

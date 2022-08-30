@@ -113,7 +113,7 @@
           }
 
           &.active {
-            @apply text-chestnut-rose font-bold opacity-100 text-opacity-100;
+            @apply text-chestnut-rose font-normal opacity-100 text-opacity-100;
             @apply lg:bg-chablis;
 
             svg {
@@ -149,10 +149,11 @@
     }
 
     &__title {
+      @apply text-abbey;
       @apply hidden lg:block;
-      @apply font-bold leading-8 text-opacity-60;
+      @apply font-bold leading-8;
       @apply mb-12;
-      @apply text-3xl;
+      @apply text-2xl;
     }
   }
 }

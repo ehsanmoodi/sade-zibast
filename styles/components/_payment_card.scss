@@ -5,7 +5,8 @@
   box-shadow: 0px 4px 80px rgba(0, 0, 0, 0.04);
 
   &__date {
-    @apply font-bold text-xl leading-8 text-opacity-90;
+    @apply font-bold text-lg leading-8;
+    @apply opacity-80;
   }
 
   &__items {
@@ -18,11 +19,12 @@
         @apply font-normal text-base;
 
         &:first-child {
-          @apply text-opacity-60;
+          @apply opacity-60;
         }
 
         &:last-child {
-          @apply font-bold text-opacity-90;
+          @apply opacity-80;
+          @apply font-bold;
         }
       }
     }

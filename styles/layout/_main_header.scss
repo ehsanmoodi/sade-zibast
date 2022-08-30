@@ -4,7 +4,7 @@
   @apply py-4;
   box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.04);
 
-  @apply font-normal text-lg;
+  @apply font-normal text-base;
 
   &__logo {
     @apply max-h-8;
@@ -50,12 +50,16 @@
   }
 
   &__action {
-    @apply flex items-center;
-    @apply leading-10;
+    @apply text-abbey;
+    @apply flex items-end;
     @apply gap-1;
 
     span {
       @apply hidden lg:inline-flex;
+    }
+
+    svg {
+      margin-bottom: 1px;
     }
   }
 }

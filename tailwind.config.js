@@ -17,6 +17,7 @@ module.exports = {
         "baltic-sea": "#1C1B1F",
         geyser: "#D1D9DD",
         "mine-shaft": "#212121",
+        abbey: "#4B4B4C",
       },
       keyframes: {
         "bounce-horizontal": {

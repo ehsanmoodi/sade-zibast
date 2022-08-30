@@ -23,6 +23,7 @@ const Payments: NextPage<
       Alert.fire({
         text: messages.noPayments,
         icon: "info",
+        allowOutsideClick: false,
         confirmButtonText: "ایجاد کارت جدید",
       }).then((sweetAlertResult) => {
         if (sweetAlertResult.isConfirmed) {
